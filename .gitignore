@@ -1,0 +1,18 @@
+# Compiled files
+target/
+*.class
+bin/
+# IDE
+.project
+.classpath
+.settings/
+.metadata/
+# OS
+.DS_Store
+Thumbs.db
+# Logs
+*.log
+# Package files
+*.jar
+*.war
+*.ear
