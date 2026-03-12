@@ -24,11 +24,20 @@ public class ConsoleUI {
             int choix = Integer.parseInt(scanner.nextLine());
 
             switch (choix) {
-                case 1 -> listerProduits();
-                case 2 -> enregistrerEntree();
-                case 3 -> enregistrerSortie();
-                case 0 -> running = false;
-                default -> System.out.println("Choix invalide.");
+                case 1:
+                    listerProduits();
+                    break;
+                case 2:
+                    enregistrerEntree();
+                    break;
+                case 3:
+                    enregistrerSortie();
+                    break;
+                case 0:
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Choix invalide.");
             }
         }
     }
