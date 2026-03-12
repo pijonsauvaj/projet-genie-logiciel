@@ -1,15 +1,24 @@
 package fr.uparis.projet_genie_logiciel.domain.service;
 
 public class ProductService {
-	{/*public void IncreaseQuantity(int id, int quantity) {
+	
+	
+	public void delProduct(int id) {
 		
 	}
-	public void DecreaseQuantity(int id, int quantity) {
+	public void addProduct(int id, String name) {
 		
-	}*/}
+	}
+	public void modifyNameProduct(int id, String name) {
+		
+	}
+	public void modifyQuantityProduct(int id, int quantity) {
+		
+	}
 	
 	
-	{/*    public boolean verifyThreshold(int id) {
+	
+	{/*public boolean verifyThreshold(int id) {
         Product p = repo.findById(id);
         int threshold = 10;
         return p.getQuantity() <= threshold;
