@@ -1,17 +1,15 @@
 package fr.uparis.projet_genie_logiciel.domain.model;
 
 public class Product {
-	private int id;
+	static private int id=0;
 	private String name;
-	private String reference;
 	private int quantity;
 	private Category category;
 	
 	
-	public Product(int i, String n, String r, int q, Category c) {
-		this.id = i;
+	public Product(String n, int q, Category c) {
+		this.id++;
 		this.name = n;
-		this.reference = r;
 		this.quantity = q;
 		this.category = c;
 	}
@@ -37,12 +35,6 @@ public class Product {
 	}
 	public void setName(String n) {
 		name = n;
-	}
-	public String getRef() {
-		return reference;
-	}
-	public void setRef(String r) {
-		reference = r;
 	}
 	public int getQuantity() {
 		return quantity;
