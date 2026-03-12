@@ -31,20 +31,20 @@ public class Product {
 	public String getName() {
 		return name;
 	}
-	public void setName(String n) {
+	public void setName(String name) {
 		if(name == null || name.isBlank()) {
 			throw new IllegalArgumentException("Le nom ne peut pas être vide");
 		}
-		name = n;
+		this.name = name;
 	}
 	public int getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(int q) {
+	public void setQuantity(int quantity) {
 		if(quantity <= 0) {
 			throw new IllegalArgumentException("La quantité ne peut pas être négative");
 		}
-		quantity = q;
+		this.quantity = quantity;
 	}
 	
 }

@@ -1,8 +1,10 @@
 package fr.uparis.projet_genie_logiciel.domain.model;
 
 public class Category {
-	private int id=0;
+	private int id;
 	private String name;
+	private static int counter = 1;
+
 	
 	public Category(String n) {
 		this.id ++;

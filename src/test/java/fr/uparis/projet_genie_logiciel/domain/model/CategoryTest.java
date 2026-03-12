@@ -1,8 +1,14 @@
 package fr.uparis.projet_genie_logiciel.domain.model;
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.*;
 
-public class ProductTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+public class CategoryTest {
 	Category cat;
 	Product product1;
     @BeforeEach
@@ -44,5 +50,4 @@ public class ProductTest {
         product1.IncreaseQuantity(4);
         assertEquals(20, product1.getQuantity());
     }
-
 }
