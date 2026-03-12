@@ -53,13 +53,27 @@ public class ProductService {
         }
         return false;
     }
+	
+	
+	public void decreaseQuantity(int id, int q) {
+	    Product product = repo.findById(id);
+	    if (product == null) {
+	        throw new IllegalArgumentException("Produit introuvable");
+	    }
 
-	/*public boolean VerifyThreshold() {
-		int threshold=10;
-		if(quantity>threshold) {
-			return false;
-		}
-		return true;
-	}*/
+	    product.setQuantity(product.getQuantity() - q); 
+	    repo.save(product);
+	}
+	
+	
+	public void increaseQuantity(int id, int q) {
+	    Product product = repo.findById(id);
+	    if (product == null) {
+	        throw new IllegalArgumentException("Produit introuvable");
+	    }
+
+	    product.setQuantity(product.getQuantity() + q); 
+	    repo.save(product);
+	}
 
 }
