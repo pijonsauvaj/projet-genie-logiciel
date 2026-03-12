@@ -1,16 +1,17 @@
 package fr.uparis.projet_genie_logiciel.domain.model;
 
 public class Product {
-	static private int id=0;
+	private int id;
 	private String name;
 	private int quantity;
 	private Category category;
+	private static int counter = 1;
+
 	
-	
-	public Product(String n, int q, Category c) {
-		this.id++;
-		this.name = n;
-		this.quantity = q;
+	public Product(String name, int quantity, Category c) {
+		this.id = counter++;
+		setName(name);
+		setQuantity(quantity);
 		this.category = c;
 	}
 	
@@ -27,26 +28,23 @@ public class Product {
 	public int getId() {
 		return id;
 	}
-	public void setId(int i) {
-		id = i;
-	}
 	public String getName() {
 		return name;
 	}
-	public void setName(String n) {
-		name = n;
+	public void setName(String name) {
+		if(name == null || name.isBlank()) {
+			throw new IllegalArgumentException("Le nom ne peut pas être vide");
+		}
+		this.name = name;
 	}
 	public int getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(int q) {
-		quantity = q;
+	public void setQuantity(int quantity) {
+		if(quantity <= 0) {
+			throw new IllegalArgumentException("La quantité ne peut pas être négative");
+		}
+		this.quantity = quantity;
 	}
-	/*public Category getCategory() {
-		return category;
-	}
-	public void setCategory(CAtegory c) {
-		category = c;
-	}*/
 	
 }
