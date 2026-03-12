@@ -1,8 +1,5 @@
 package fr.uparis.projet_genie_logiciel.presentation;
 
-import fr.uparis.projet_genie_logiciel.metier.model.Produit;
-import fr.uparis.projet_genie_logiciel.metier.service.GestionStockService;
-
 import java.util.Scanner;
 
 public class ConsoleUI {
@@ -52,7 +49,7 @@ public class ConsoleUI {
     }
 
     private void listerProduits() {
-        for (Produit p : service.listerProduits()) {
+        for (Product p : service.listerProduits()) {
             System.out.println(p.getNom() + " - Quantité : " + p.getQuantite());
         }
     }
