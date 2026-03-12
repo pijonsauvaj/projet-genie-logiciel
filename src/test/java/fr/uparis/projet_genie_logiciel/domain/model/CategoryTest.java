@@ -10,44 +10,29 @@ import org.junit.jupiter.api.Test;
 
 public class CategoryTest {
 	Category cat;
-	Product product1;
     @BeforeEach
     void setUp() {
-        cat = new Category("Fruit");
-        product1 = new Product("Tomate", 16, cat);
+        cat = new Category("Legume");
     }
     
     @Test
     void shouldCreateProduct() {
-    	Product product2 = new Product("Orange", 16, cat);
-    	assertNotNull(product2);
-        assertEquals("Orange", product2.getName());
-        assertTrue(product2.getId() > 0);
+    	Category category = new Category("Fruit");
+    	assertNotNull(category);
+        assertEquals("Fruit", category.getName());
+        assertTrue(category.getId() > 0);
     }
 
     @Test
     void shouldChangeName() {
-        product1.setName("Fraise");
-        assertEquals("Fraise", product1.getName());
+        cat.setName("Viande");
+        assertEquals("Viande", cat.getName());
     }
-    
-    @Test
-    void shouldChangeQuantity() {
-        product1.setQuantity(18);
-        assertEquals(18, product1.getQuantity());
-    }
-    
     
     @Test
     void shouldNotAllowEmptyName() {
         assertThrows(IllegalArgumentException.class, () -> {
-            product1.setName("");
+            cat.setName("");
         });
-    }
-    
-    @Test
-    void shouldIncreaseQuantity() {
-        product1.IncreaseQuantity(4);
-        assertEquals(20, product1.getQuantity());
     }
 }
