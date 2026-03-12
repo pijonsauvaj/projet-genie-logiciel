@@ -41,6 +41,7 @@ public class ProductService {
 	public List<Product> listAllProduct(){
 		return repo.findAll();
 	}
+	public void listAllProduct(){}
 	public void listProductByCategory(){}
 	
 	
