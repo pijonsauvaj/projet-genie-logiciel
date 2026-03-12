@@ -16,6 +16,8 @@ public class ProductService {
 		
 	}
 	
+	public void listAllProduct(){}
+	public void listProductByCategory(){}
 	
 	
 	{/*public boolean verifyThreshold(int id) {
