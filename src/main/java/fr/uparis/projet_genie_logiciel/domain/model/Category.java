@@ -1,11 +1,11 @@
 package fr.uparis.projet_genie_logiciel.domain.model;
 
 public class Category {
-	private int id;
+	private int id=0;
 	private String name;
 	
-	public Category(int i, String n) {
-		this.id = i;
+	public Category(String n) {
+		this.id ++;
 		this.name = n;
 	}
 	public int getId() {
