@@ -29,7 +29,7 @@ public class CLI {
                     service.listAllProduct();
                     break;
                 case 2:
-                    service.addProduct(null, choix, null);
+                    productRegister();
                     break;
                 case 3:
                     service.increaseQuantity(choix, choix);
@@ -55,7 +55,7 @@ public class CLI {
         System.out.print("Votre choix : ");
     }
     
-    private void productRegister() { //Y'a un truc qui va pas au niveau des categories
+    private void productRegister() { 
         System.out.print("Nom du produit: \n");
         String name = scanner.nextLine();
 
@@ -64,10 +64,8 @@ public class CLI {
         
         System.out.print("Dans quel catégorie voulez vous ajouter le produit? \n");
         String nameCategory = scanner.nextLine();
-        Category category = new Category(nameCategory);
-        categoryService.addCategory(nameCategory);
 
-        service.addProduct(name, quantity, category); //je dois ajouter une categorie mais je dois d'abord demander le nom puis...
+        service.addProduct(name, quantity, categoryService.addCategory(nameCategory)); //je dois ajouter une categorie mais je dois d'abord demander le nom puis...
         System.out.println("Entrée enregistrée.");
     }
 	
