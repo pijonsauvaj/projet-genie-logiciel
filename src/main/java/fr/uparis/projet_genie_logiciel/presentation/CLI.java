@@ -26,16 +26,15 @@ public class CLI {
 
             switch (choix) {
                 case 1:
-                    service.listAllProduct();
+                    service.listAllProduct(); //marche pas
                     break;
                 case 2:
                     productRegister();
                     break;
                 case 3:
-                    service.increaseQuantity(choix, choix);
+                    increase();
                     break;
                 case 4:
-                    service.decreaseQuantity(choix, choix);
                     break;   
                 case 0:
                     running = false;
@@ -46,11 +45,11 @@ public class CLI {
         }
     }
 
-    private void afficherMenu() {
+    public void afficherMenu() {
         System.out.println("\n=== Gestion Stock ===");
         System.out.println("1. Lister produits");
-        System.out.println("2. Entrée de stock");
-        System.out.println("3. Sortie de stock");
+        System.out.println("2. Enregistrer un produit");
+        System.out.println("3. Augmenter ou baisser la quantité d'un produit");
         System.out.println("0. Quitter");
         System.out.print("Votre choix : ");
     }
@@ -59,7 +58,7 @@ public class CLI {
         System.out.print("Nom du produit: \n");
         String name = scanner.nextLine();
 
-        System.out.print("\n\nQuantité du produit: \n");
+        System.out.print("\nQuantité du produit: \n");
         int quantity = Integer.parseInt(scanner.nextLine());
         
         System.out.print("Dans quel catégorie voulez vous ajouter le produit? \n");
@@ -67,6 +66,20 @@ public class CLI {
 
         service.addProduct(name, quantity, categoryService.addCategory(nameCategory)); //je dois ajouter une categorie mais je dois d'abord demander le nom puis...
         System.out.println("Entrée enregistrée.");
+        System.out.println("\033[H\033[2J"); //censé nettoyer la console (je crois)
+        afficherMenu();
     }
-	
+    
+    private void increase() { 
+        System.out.print("Nom du produit: \n");
+        String name = scanner.nextLine();
+
+        System.out.print("\nnombre de quantité que tu veux augmenter ou baisse (ex: 7 ou -3): \n");
+        int quantity = Integer.parseInt(scanner.nextLine());
+
+        service.increaseQuantity(name, quantity);
+        System.out.println("Entrée enregistrée.");
+        System.out.println("\033[H\033[2J"); //censé nettoyer la console (je crois)
+        afficherMenu();
+    }
 }
