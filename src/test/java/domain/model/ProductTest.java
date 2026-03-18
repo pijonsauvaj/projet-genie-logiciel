@@ -1,6 +1,9 @@
-package fr.uparis.projet_genie_logiciel.domain.model;
+package domain.model;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
+
+import fr.uparis.projet_genie_logiciel.domain.model.Category;
+import fr.uparis.projet_genie_logiciel.domain.model.Product;
 
 public class ProductTest {
 	Category cat;
