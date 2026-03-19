@@ -21,7 +21,7 @@ public class ProductRepo {
     }
 
     public List<Product> findAll() {
-        return new ArrayList<>(products.values());
+        return products.values().stream().toList();
     }
 
     public void delete(int id) {

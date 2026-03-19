@@ -50,7 +50,7 @@ class ProductServiceTest {
     }
     @Test
 	public void shouldDelProduct() {
-        service.delProduct(1);
+        service.delProduct("Tomate");
         verify(repo).delete(1);
 	}
     @Test

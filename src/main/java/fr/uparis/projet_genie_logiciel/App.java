@@ -3,22 +3,31 @@ package fr.uparis.projet_genie_logiciel;
 import fr.uparis.projet_genie_logiciel.persistance.CategoryRepo;
 import fr.uparis.projet_genie_logiciel.persistance.ProductRepo;
 import fr.uparis.projet_genie_logiciel.presentation.CLI;
-import fr.uparis.projet_genie_logiciel.domain.*;
+import fr.uparis.projet_genie_logiciel.presentation.command.AddProductCommand;
+import fr.uparis.projet_genie_logiciel.presentation.command.DeleteProductCommand;
+import fr.uparis.projet_genie_logiciel.presentation.command.ExitCommand;
+import fr.uparis.projet_genie_logiciel.presentation.command.ListProductsCommand;
+
+
+import java.util.Scanner;
+
 import fr.uparis.projet_genie_logiciel.domain.service.CategoryService;
 import fr.uparis.projet_genie_logiciel.domain.service.ProductService;
 
-/**
- * Hello world!
- *
- */
-public class App 
+ class App 
 {
     public static void main( String[] args ){
-    	ProductRepo repo = new ProductRepo();
-    	CategoryRepo rep = new CategoryRepo();
-    	ProductService ps = new ProductService(repo);
-    	CategoryService cs = new CategoryService(rep);
-    	CLI cli = new CLI(ps, cs);
-    	cli.start();
-    }
+	    Scanner scanner = new Scanner(System.in);
+	    ProductRepo repo = new ProductRepo();
+	    ProductService service = new ProductService(repo);
+	    CategoryRepo categoryRepo = new CategoryRepo();
+	    CategoryService categoryService = new CategoryService(categoryRepo);
+
+	    CLI cli = new CLI();
+	    cli.register(new AddProductCommand(categoryService, service, scanner));
+	    cli.register(new ListProductsCommand(categoryService, service, scanner));
+	    cli.register(new DeleteProductCommand(categoryService, service, scanner));
+	    cli.register(new ExitCommand());
+	    cli.run();
+	}
 }
