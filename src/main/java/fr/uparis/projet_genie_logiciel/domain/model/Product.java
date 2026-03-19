@@ -50,5 +50,10 @@ public class Product {
 	public void addQuantity(int q) {
 		this.quantity+=q;
 	}
+
+
+	public void setId(int i) {
+		this.id=i;
+	}
 	
 }

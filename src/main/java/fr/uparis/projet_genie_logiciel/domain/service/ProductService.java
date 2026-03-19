@@ -79,7 +79,7 @@ public class ProductService {
 	        throw new IllegalArgumentException("Produit introuvable");
 	    }
 	    Product product = opt.get();
-	    if(product.getQuantity()<q) {
+	    if(q<=0) {
 	        throw new IllegalArgumentException("Quantité pas assez grande");
 	    }
 	    else {
