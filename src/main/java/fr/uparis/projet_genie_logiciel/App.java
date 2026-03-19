@@ -4,8 +4,10 @@ import fr.uparis.projet_genie_logiciel.persistance.CategoryRepo;
 import fr.uparis.projet_genie_logiciel.persistance.ProductRepo;
 import fr.uparis.projet_genie_logiciel.presentation.CLI;
 import fr.uparis.projet_genie_logiciel.presentation.command.AddProductCommand;
+import fr.uparis.projet_genie_logiciel.presentation.command.DecreaseProductCommand;
 import fr.uparis.projet_genie_logiciel.presentation.command.DeleteProductCommand;
 import fr.uparis.projet_genie_logiciel.presentation.command.ExitCommand;
+import fr.uparis.projet_genie_logiciel.presentation.command.IncreaseProductCommand;
 import fr.uparis.projet_genie_logiciel.presentation.command.ListProductsCommand;
 
 
@@ -27,6 +29,8 @@ import fr.uparis.projet_genie_logiciel.domain.service.ProductService;
 	    cli.register(new AddProductCommand(categoryService, service, scanner));
 	    cli.register(new ListProductsCommand(categoryService, service, scanner));
 	    cli.register(new DeleteProductCommand(categoryService, service, scanner));
+	    cli.register(new IncreaseProductCommand(service, scanner));
+	    cli.register(new DecreaseProductCommand(service, scanner));
 	    cli.register(new ExitCommand());
 	    cli.run();
 	}

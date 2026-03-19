@@ -20,7 +20,6 @@ public class ProductService {
 	        throw new IllegalArgumentException("Produit introuvable");
 	    }
 	}
-
 	
 	public void delProduct(String name) {
 		Optional<Product> opt = repo.findByName(name);
@@ -35,6 +34,7 @@ public class ProductService {
 	    Product p = new Product(name, quantity, category);
 	    repo.save(p);
 	}
+	
 	public void modifyNameProduct(int id, String name) {
 	    Product product = repo.findById(id);
 	    verifyNotNull(product);
@@ -46,6 +46,7 @@ public class ProductService {
 	        throw new IllegalArgumentException("Le nom ne peut pas être vide.");
 	    }
 	}
+	
 	public void modifyQuantityProduct(int id, int quantity) {
 	    Product product = repo.findById(id);
 	    verifyNotNull(product);
@@ -61,9 +62,11 @@ public class ProductService {
 	public Optional<Product> getProduct(String name) {
 		return repo.findByName(name);
 	}
+	
 	public List<Product> getAllProduct(){
 		return repo.findAll();
 	}
+	
 	//réfléchir la logique
 	public void listProductByCategory(){}
 	
@@ -96,6 +99,7 @@ public class ProductService {
 	    	 throw new IllegalArgumentException("Seuil de quantité atteint");
 	    }
 	}
+	
 	public void decreaseQuantity(String name, int q) { 
 	    Optional<Product> opt = repo.findByName(name);
 	    if (opt.isEmpty()) {

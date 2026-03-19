@@ -2,14 +2,9 @@ package fr.uparis.projet_genie_logiciel.presentation;
 
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import fr.uparis.projet_genie_logiciel.domain.model.Category;
-import fr.uparis.projet_genie_logiciel.domain.model.Product;
-import fr.uparis.projet_genie_logiciel.domain.service.CategoryService;
-import fr.uparis.projet_genie_logiciel.domain.service.ProductService;
 import fr.uparis.projet_genie_logiciel.presentation.command.Command;
 
 public class CLI {
