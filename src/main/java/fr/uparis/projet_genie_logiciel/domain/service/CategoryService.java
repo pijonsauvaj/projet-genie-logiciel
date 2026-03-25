@@ -17,9 +17,10 @@ public class CategoryService {
 	public void delCategory(int id) {
 		repo.delete(id);
 	}
-	public void addCategory(String name) {
+	public Category addCategory(String name) { //Je l'ai typé avec la class Category pour permettre de l'utiliser dans un addProduct (Service)
 		Category cat = new Category(name);
 		repo.save(cat);
+		return cat;
 	}
 	public void modifyNameCategory(int id, String name) {
 		Category cat = repo.findById(id);
@@ -32,9 +33,6 @@ public class CategoryService {
 	public List<Category> listAllCategory(){
 		return repo.findAll();
 	}
-	
-	
-	
 	
 	
 }

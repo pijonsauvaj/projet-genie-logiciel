@@ -1,6 +1,7 @@
 package fr.uparis.projet_genie_logiciel.domain.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import fr.uparis.projet_genie_logiciel.domain.model.Category;
 import fr.uparis.projet_genie_logiciel.domain.model.Product;
@@ -13,67 +14,108 @@ public class ProductService {
 	public ProductService(ProductRepo repo) {
         this.repo = repo;
     }
-
 	
-	public void delProduct(int id) {
-		repo.delete(id);
+	public void verifyNotNull(Product product) {
+	    if (product == null) {
+	        throw new IllegalArgumentException("Produit introuvable");
+	    }
 	}
+	
+	public void delProduct(String name) {
+		Optional<Product> opt = repo.findByName(name);
+	    if (opt.isEmpty()) {
+	        throw new IllegalArgumentException("Product not found: " + name);
+	    }
+	    Product p = opt.get();
+		repo.delete(p.getId());
+	}
+	
 	public void addProduct(String name, int quantity, Category category) {
 	    Product p = new Product(name, quantity, category);
 	    repo.save(p);
 	}
+	
 	public void modifyNameProduct(int id, String name) {
 	    Product product = repo.findById(id);
-	    if (product != null) {
+	    verifyNotNull(product);
+	    if (name != null) {
 	        product.setName(name);
 	        repo.save(product);
 	    }
-	}
-	public void modifyQuantityProduct(int id, int quantity) {
-	    Product product = repo.findById(id);
-	    if (product != null) {
-	        product.setQuantity(quantity);
-	        repo.save(product);
+	    else {
+	        throw new IllegalArgumentException("Le nom ne peut pas être vide.");
 	    }
 	}
 	
-
-	public List<Product> listAllProduct(){
+	public void modifyQuantityProduct(int id, int quantity) {
+	    Product product = repo.findById(id);
+	    verifyNotNull(product);
+	    if (quantity>0) {
+	        product.setQuantity(quantity);
+	        repo.save(product);
+	    }
+	    else {
+	        throw new IllegalArgumentException("La quantité doit être positif.");
+	    }
+	}
+	
+	public Optional<Product> getProduct(String name) {
+		return repo.findByName(name);
+	}
+	
+	public List<Product> getAllProduct(){
 		return repo.findAll();
 	}
+	
 	//réfléchir la logique
 	public void listProductByCategory(){}
 	
 	
 	public boolean verifyThreshold(int id) {
         Product p = repo.findById(id);
+	    verifyNotNull(p);
         int threshold = 10;
-        if(p.getQuantity()<threshold){
+        if(p.getQuantity()<=threshold){
         	return true;
         }
         return false;
     }
 	
 	
-	public void decreaseQuantity(int id, int q) {
-	    Product product = repo.findById(id);
-	    if (product == null) {
+	public void increaseQuantity(String name, int q) { 
+	    Optional<Product> opt = repo.findByName(name);
+	    if (opt.isEmpty()) {
 	        throw new IllegalArgumentException("Produit introuvable");
 	    }
-
-	    product.setQuantity(product.getQuantity() - q); 
-	    repo.save(product);
+	    Product product = opt.get();
+	    if(q<=0) {
+	        throw new IllegalArgumentException("Quantité pas assez grande");
+	    }
+	    else {
+		    product.addQuantity(q);
+		    repo.save(product);
+	    }
+	    if(verifyThreshold(product.getId()) == true) {
+	    	 throw new IllegalArgumentException("Seuil de quantité atteint");
+	    }
 	}
 	
-	
-	public void increaseQuantity(int id, int q) {
-	    Product product = repo.findById(id);
-	    if (product == null) {
+	public void decreaseQuantity(String name, int q) { 
+	    Optional<Product> opt = repo.findByName(name);
+	    if (opt.isEmpty()) {
 	        throw new IllegalArgumentException("Produit introuvable");
 	    }
-
-	    product.setQuantity(product.getQuantity() + q); 
-	    repo.save(product);
+	    Product product = opt.get();
+	    if(q<=0) {
+	        throw new IllegalArgumentException("Quantité pas assez grande");
+	    }
+	    else {
+		    product.addQuantity(-q);
+		    repo.save(product);
+	    }
+	    if(verifyThreshold(product.getId()) == true) {
+	    	 throw new IllegalArgumentException("Seuil de quantité atteint");
+	    }
 	}
 
 }

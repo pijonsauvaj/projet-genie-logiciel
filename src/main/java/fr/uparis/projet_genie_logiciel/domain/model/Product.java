@@ -16,6 +16,17 @@ public class Product {
 	}
 	
 	
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name +
+                ", quantity=" + quantity +
+                ", category=" + category.getName() +
+                '}';
+    }
+
+	
 	/* Je ne sais pas si increase et derease sont des méthodes métier ou service
 	public void IncreaseQuantity(int q) {
 		quantity+=q;
@@ -45,6 +56,15 @@ public class Product {
 			throw new IllegalArgumentException("La quantité ne peut pas être négative");
 		}
 		this.quantity = quantity;
+	}
+	
+	public void addQuantity(int q) {
+		this.quantity+=q;
+	}
+
+
+	public void setId(int i) {
+		this.id=i;
 	}
 	
 }

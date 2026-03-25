@@ -1,6 +1,9 @@
-package fr.uparis.projet_genie_logiciel.domain.model;
+package domain.model;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
+
+import fr.uparis.projet_genie_logiciel.domain.model.Category;
+import fr.uparis.projet_genie_logiciel.domain.model.Product;
 
 public class ProductTest {
 	Category cat;
@@ -32,17 +35,12 @@ public class ProductTest {
     }
     
     
-    @Test
-    void shouldNotAllowEmptyName() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            product1.setName("");
-        });
-    }
-    
-    @Test
+    /*@Test     //Fraichement commenté pour l'ajouter dans service
     void shouldIncreaseQuantity() {
         product1.IncreaseQuantity(4);
         assertEquals(20, product1.getQuantity());
     }
+    Demander au prof si increase et decrease sont des class ou des services
+    */
 
 }

@@ -14,9 +14,14 @@ public class ProductRepo {
     public Product findById(int id) {
         return products.get(id);
     }
+    public Optional<Product> findByName(String name) {
+        return  products.values().stream()
+        	    .filter(product -> product.getName().equalsIgnoreCase(name))
+        	    .findFirst();
+    }
 
     public List<Product> findAll() {
-        return new ArrayList<>(products.values());
+        return products.values().stream().toList();
     }
 
     public void delete(int id) {
