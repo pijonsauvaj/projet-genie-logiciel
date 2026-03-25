@@ -104,7 +104,7 @@ class ProductServiceTest {
     }
     
     @Test
-    public void shoulExceptionDelProduct() {
+    public void shoulDelProductNotFound() {
         when(repo.findByName("Tomate")).thenReturn(Optional.<Product>empty());
         try {
             service.delProduct("Tomate");
@@ -114,7 +114,7 @@ class ProductServiceTest {
     }
     
     @Test
-    public void shouldExceptionModifyNameProductNotFound() {
+    public void shouldModifyNameProductNotFound() {
         when(repo.findById(1)).thenReturn(null);
         try {
             service.modifyNameProduct(1, "Carotte");
@@ -123,7 +123,7 @@ class ProductServiceTest {
         }
     }
     @Test
-    public void shouldExceptionModifyNameProductNameNull() {
+    public void shouldModifyNameProductNameNull() {
         when(repo.findById(1)).thenReturn(p);
         try {
             service.modifyNameProduct(1, null);
