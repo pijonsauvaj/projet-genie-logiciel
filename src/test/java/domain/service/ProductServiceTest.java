@@ -92,4 +92,17 @@ class ProductServiceTest {
         assertEquals("Tomate", result.get(0).getName());
         verify(repo).findAll();
     }
+    
+    @Test
+    public void shouldVerifyNotNull() {
+        try {
+            service.verifyNotNull(null);
+        } catch (IllegalArgumentException e) {
+            assertEquals("Produit introuvable", e.getMessage());
+        }
+    }
+    
+    
+    
+    
 }
