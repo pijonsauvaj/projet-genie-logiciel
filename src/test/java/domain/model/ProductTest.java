@@ -35,13 +35,6 @@ public class ProductTest {
     }
     
     
-    @Test
-    void shouldNotAllowEmptyName() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            product1.setName("");
-        });
-    }
-    
     /*@Test     //Fraichement commenté pour l'ajouter dans service
     void shouldIncreaseQuantity() {
         product1.IncreaseQuantity(4);

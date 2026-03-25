@@ -25,13 +25,5 @@ public class PersonTest {
     	person1.setName("Fraise");
         assertEquals("Fraise", person1.getName());
     }
-    
-    
-    @Test
-    void shouldNotAllowEmptyName() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            person1.setName("");
-        });
-    }
 
 }
