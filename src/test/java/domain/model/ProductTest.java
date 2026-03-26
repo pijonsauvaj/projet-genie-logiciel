@@ -1,5 +1,7 @@
 package domain.model;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
+
 import org.junit.jupiter.api.*;
 
 import fr.uparis.projet_genie_logiciel.domain.model.Category;
@@ -34,13 +36,19 @@ public class ProductTest {
         assertEquals(18, product1.getQuantity());
     }
     
-    
-    /*@Test     //Fraichement commenté pour l'ajouter dans service
-    void shouldIncreaseQuantity() {
-        product1.IncreaseQuantity(4);
+    @Test
+    void shouldAddQuantity() {
+        product1.addQuantity(4);
         assertEquals(20, product1.getQuantity());
     }
-    Demander au prof si increase et decrease sont des class ou des services
-    */
-
+    @Test
+    void shouldNotAllowNegativeQuantity() {
+        try {
+            product1.setQuantity(0);
+        }
+        catch (IllegalArgumentException e) {
+            assertEquals("La quantité ne peut pas être négative ou nulle", e.getMessage());
+        }
+    }
+    
 }
