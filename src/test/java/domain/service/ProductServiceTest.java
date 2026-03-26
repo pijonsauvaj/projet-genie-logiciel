@@ -244,5 +244,4 @@ class ProductServiceTest {
             assertEquals("Seuil de quantité atteint", e.getMessage());
         }
     }
-    
 }
