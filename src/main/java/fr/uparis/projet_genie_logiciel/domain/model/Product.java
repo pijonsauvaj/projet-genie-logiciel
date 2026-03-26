@@ -53,7 +53,7 @@ public class Product {
 	}
 	public void setQuantity(int quantity) {
 		if(quantity <= 0) {
-			throw new IllegalArgumentException("La quantité ne peut pas être négative");
+			throw new IllegalArgumentException("La quantité ne peut pas être négative ou nulle");
 		}
 		this.quantity = quantity;
 	}
