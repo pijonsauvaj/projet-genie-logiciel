@@ -25,7 +25,7 @@ class ProductServiceTest {
 	
 	@BeforeEach
     void setUp() {
-        p = new Product("Tomate", 20, new Category("Fruit"));
+        p = new Product("tomate", 20, new Category("Fruit"));
     }
 
     @Mock
@@ -37,9 +37,9 @@ class ProductServiceTest {
     @Test
     public void shouldIncreaseQuantity() {
     	p.setId(1);
-        when(repo.findByName("Tomate")).thenReturn(Optional.of(p));
+        when(repo.findByName("tomate")).thenReturn(Optional.of(p));
         when(repo.findById(1)).thenReturn(p);
-        service.increaseQuantity("Tomate", 5);
+        service.increaseQuantity("tomate", 5);
         assertEquals(25, p.getQuantity());
         verify(repo).save(p);
     }
@@ -48,20 +48,20 @@ class ProductServiceTest {
     public void shouldModifyName() {
         when(repo.findById(1)).thenReturn(p);
         service.modifyNameProduct(1, "Carotte");
-        assertEquals("Carotte", p.getName());
+        assertEquals("carotte", p.getName());
         verify(repo).save(p);
     }
     @Test
 	public void shouldDelProduct() {
-        Product p = new Product("Tomate", 10, new Category("Fruit"));
+        Product p = new Product("tomate", 10, new Category("Fruit"));
         p.setId(1);
-        when(repo.findByName("Tomate")).thenReturn(Optional.of(p));
-        service.delProduct("Tomate");
+        when(repo.findByName("tomate")).thenReturn(Optional.of(p));
+        service.delProduct("tomate");
         verify(repo).delete(1);
 	}
     @Test
     public void shouldModifyQuantity() {
-        Product p = new Product("Tomate", 10, new Category("Fruit"));
+        Product p = new Product("tomate", 10, new Category("Fruit"));
         p.setId(1);
         when(repo.findById(1)).thenReturn(p);
         service.modifyQuantityProduct(1, 20);
@@ -70,27 +70,27 @@ class ProductServiceTest {
     }
     @Test
     public void shouldAddProduct() {
-        service.addProduct("Tomate", 10, new Category("Fruit"));
+        service.addProduct("tomate", 10, new Category("Fruit"));
         verify(repo).save(any(Product.class));
     }
     @Test
     public void shouldGetProduct() {
-        Product p = new Product("Tomate", 10, new Category("Fruit"));
-        when(repo.findByName("Tomate")).thenReturn(Optional.of(p));
-        Optional<Product> result = service.getProduct("Tomate");
+        Product p = new Product("tomate", 10, new Category("Fruit"));
+        when(repo.findByName("tomate")).thenReturn(Optional.of(p));
+        Optional<Product> result = service.getProduct("tomate");
         assertTrue(result.isPresent());
-        assertEquals("Tomate", result.get().getName());
-        verify(repo).findByName("Tomate");
+        assertEquals("tomate", result.get().getName());
+        verify(repo).findByName("tomate");
     }
     @Test
     public void shouldGetAllProducts() {
-        Product p1 = new Product("Tomate", 10, new Category("Fruit"));
-        Product p2 = new Product("Pomme", 5, new Category("Fruit"));
+        Product p1 = new Product("tomate", 10, new Category("Fruit"));
+        Product p2 = new Product("pomme", 5, new Category("Fruit"));
         List<Product> list = List.of(p1, p2);
         when(repo.findAll()).thenReturn(list);
         List<Product> result = service.getAllProduct();
         assertEquals(2, result.size());
-        assertEquals("Tomate", result.get(0).getName());
+        assertEquals("tomate", result.get(0).getName());
         verify(repo).findAll();
     }
     
@@ -105,9 +105,9 @@ class ProductServiceTest {
     
     @Test
     public void shoulDelProductNotFound() {
-        when(repo.findByName("Tomate")).thenReturn(Optional.<Product>empty());
+        when(repo.findByName("tomate")).thenReturn(Optional.<Product>empty());
         try {
-            service.delProduct("Tomate");
+            service.delProduct("tomate");
         } catch (IllegalArgumentException e) {
             assertTrue(e.getMessage().contains("Product not found"));
         }
@@ -151,9 +151,9 @@ class ProductServiceTest {
     }
     @Test
     public void shouldGetProductotFound() {
-        when(repo.findByName("Tomate")).thenReturn(Optional.<Product>empty());
+        when(repo.findByName("tomate")).thenReturn(Optional.<Product>empty());
 
-        Optional<Product> result = service.getProduct("Tomate");
+        Optional<Product> result = service.getProduct("tomate");
         assertFalse(result.isPresent());
     }
     @Test
@@ -175,9 +175,9 @@ class ProductServiceTest {
     
     @Test
     public void shouldIncreaseQuantityProductNotFound() {
-        when(repo.findByName("Tomate")).thenReturn(Optional.<Product>empty());
+        when(repo.findByName("tomate")).thenReturn(Optional.<Product>empty());
         try {
-            service.increaseQuantity("Tomate", 5);
+            service.increaseQuantity("tomate", 5);
         } catch (IllegalArgumentException e) {
             assertEquals("Produit introuvable", e.getMessage());
         }
@@ -185,9 +185,9 @@ class ProductServiceTest {
     
     @Test
     public void shouldIncreaseQuantityQuantityInvalid() {
-        when(repo.findByName("Tomate")).thenReturn(Optional.of(p));
+        when(repo.findByName("tomate")).thenReturn(Optional.of(p));
         try {
-            service.increaseQuantity("Tomate", 0);
+            service.increaseQuantity("tomate", 0);
         } catch (IllegalArgumentException e) {
             assertEquals("Quantité pas assez grande", e.getMessage());
         }
@@ -197,10 +197,10 @@ class ProductServiceTest {
     public void shouldIncreaseQuantityThresholdReached() {
         p.setId(1);
         p.setQuantity(10);
-        when(repo.findByName("Tomate")).thenReturn(Optional.of(p));
+        when(repo.findByName("tomate")).thenReturn(Optional.of(p));
         when(repo.findById(1)).thenReturn(p);
         try {
-            service.increaseQuantity("Tomate", 1);
+            service.increaseQuantity("tomate", 1);
         } catch (IllegalArgumentException e) {
             assertEquals("Seuil de quantité atteint", e.getMessage());
         }
@@ -208,26 +208,26 @@ class ProductServiceTest {
     @Test
     public void shouldDecreaseQuantityCorrectly() {
         p.setId(1);
-        when(repo.findByName("Tomate")).thenReturn(Optional.of(p));
+        when(repo.findByName("tomate")).thenReturn(Optional.of(p));
         when(repo.findById(1)).thenReturn(p);
-        service.decreaseQuantity("Tomate", 3);
+        service.decreaseQuantity("tomate", 3);
         assertEquals(17, p.getQuantity());
         verify(repo).save(p);
     }
     @Test
     public void shouldDecreaseQuantityProductNotFound() {
-        when(repo.findByName("Tomate")).thenReturn(Optional.<Product>empty());
+        when(repo.findByName("tomate")).thenReturn(Optional.<Product>empty());
         try {
-            service.decreaseQuantity("Tomate", 3);
+            service.decreaseQuantity("tomate", 3);
         } catch (IllegalArgumentException e) {
             assertEquals("Produit introuvable", e.getMessage());
         }
     }
     @Test
     public void shouldDecreaseQuantityInvalid() {
-        when(repo.findByName("Tomate")).thenReturn(Optional.of(p));
+        when(repo.findByName("tomate")).thenReturn(Optional.of(p));
         try {
-            service.decreaseQuantity("Tomate", 0);
+            service.decreaseQuantity("tomate", 0);
         } catch (IllegalArgumentException e) {
             assertEquals("Quantité pas assez grande", e.getMessage());
         }
@@ -236,13 +236,12 @@ class ProductServiceTest {
     public void shouldDecreaseQuantityThresholdReached() {
         p.setId(1);
         p.setQuantity(10);
-        when(repo.findByName("Tomate")).thenReturn(Optional.of(p));
+        when(repo.findByName("tomate")).thenReturn(Optional.of(p));
         when(repo.findById(1)).thenReturn(p);
         try {
-            service.decreaseQuantity("Tomate", 1);
+            service.decreaseQuantity("tomate", 1);
         } catch (IllegalArgumentException e) {
             assertEquals("Seuil de quantité atteint", e.getMessage());
         }
     }
-    
 }

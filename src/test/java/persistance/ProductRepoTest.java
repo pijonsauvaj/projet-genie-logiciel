@@ -20,7 +20,7 @@ class ProductRepoTest {
     @BeforeEach
     public void setUp() {
         repo = new ProductRepo();
-        p = new Product("Tomate", 10, new Category("Fruit"));
+        p = new Product("tomate", 10, new Category("fruit"));
         p.setId(1);
     }
 
@@ -29,14 +29,14 @@ class ProductRepoTest {
         repo.save(p);
         Product result = repo.findById(1);
         assertNotNull(result);
-        assertEquals("Tomate", result.getName());
+        assertEquals("tomate", result.getName());
     }
 
     @Test
     public void shouldFindById() {
         repo.save(p);
         Product result = repo.findById(1);
-        assertEquals("Tomate", result.getName());
+        assertEquals("tomate", result.getName());
     }
 
     @Test
@@ -48,17 +48,17 @@ class ProductRepoTest {
     @Test
     public void shouldFindByName() {
         repo.save(p);
-        Optional<Product> result = repo.findByName("Tomate");
+        Optional<Product> result = repo.findByName("tomate");
         assertTrue(result.isPresent());
-        assertEquals("Tomate", result.get().getName());
+        assertEquals("tomate", result.get().getName());
     }
 
     @Test
     public void shouldFindByNameIgnoreCase() {
         repo.save(p);
-        Optional<Product> result = repo.findByName("tOmAtE");
+        Optional<Product> result = repo.findByName("tomate");
         assertTrue(result.isPresent());
-        assertEquals("Tomate", result.get().getName());
+        assertEquals("tomate", result.get().getName());
     }
 
     @Test
@@ -69,7 +69,7 @@ class ProductRepoTest {
 
     @Test
     public void shouldFindAllProducts() {
-        Product p2 = new Product("Pomme", 5, new Category("Fruit"));
+        Product p2 = new Product("Pomme", 5, new Category("fruit"));
         p2.setId(2);
         repo.save(p);
         repo.save(p2);

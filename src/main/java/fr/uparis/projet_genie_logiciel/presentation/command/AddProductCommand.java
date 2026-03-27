@@ -13,7 +13,7 @@ public class AddProductCommand implements Command {
     public AddProductCommand(CategoryService categoryService, ProductService service, Scanner scanner) {
     	this.categoryService = categoryService;
     	this.service = service;
-        this.scanner = new Scanner(System.in);
+        this.scanner = scanner;
     }
 
     @Override
