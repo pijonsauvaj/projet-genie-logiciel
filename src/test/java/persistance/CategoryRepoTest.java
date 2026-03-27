@@ -18,7 +18,7 @@ class CategoryRepoTest {
     @BeforeEach
     public void setUp() {
         repo = new CategoryRepo();
-        cat = new Category("Fruit");
+        cat = new Category("fruit");
         cat.setId(1);
     }
 
@@ -27,14 +27,14 @@ class CategoryRepoTest {
         repo.save(cat);
         Category result = repo.findById(1);
         assertNotNull(result);
-        assertEquals("Fruit", result.getName());
+        assertEquals("fruit", result.getName());
     }
 
     @Test
     public void shouldFindById() {
         repo.save(cat);
         Category result = repo.findById(1);
-        assertEquals("Fruit", result.getName());
+        assertEquals("fruit", result.getName());
     }
 
     @Test
@@ -51,7 +51,7 @@ class CategoryRepoTest {
         repo.save(cat2);
         List<Category> list = repo.findAll();
         assertEquals(2, list.size());
-        assertEquals("Fruit", list.get(0).getName());
+        assertEquals("fruit", list.get(0).getName());
     }
 
     @Test
