@@ -18,14 +18,14 @@ public class CategoryService {
 		repo.delete(id);
 	}
 	public Category addCategory(String name) { //Je l'ai typé avec la class Category pour permettre de l'utiliser dans un addProduct (Service)
-		Category cat = new Category(name);
+		Category cat = new Category(lowerCase(name));
 		repo.save(cat);
 		return cat;
 	}
 	public void modifyNameCategory(int id, String name) {
 		Category cat = repo.findById(id);
 		if(cat != null) {
-			cat.setName(name);
+			cat.setName(lowerCase(name));
 			repo.save(cat);
 		}
 	}
@@ -34,5 +34,7 @@ public class CategoryService {
 		return repo.findAll();
 	}
 	
-	
+	private String lowerCase(String name) {
+	    return name.toLowerCase().trim();
+	}
 }

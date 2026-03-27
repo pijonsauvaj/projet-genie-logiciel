@@ -46,7 +46,7 @@ public class Product {
 		if(name == null || name.isBlank()) {
 			throw new IllegalArgumentException("Le nom ne peut pas être vide");
 		}
-		this.name = name;
+		this.name = name.toLowerCase().trim();
 	}
 	public int getQuantity() {
 		return quantity;

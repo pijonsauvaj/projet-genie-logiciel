@@ -22,7 +22,7 @@ public class ProductService {
 	}
 	
 	public void delProduct(String name) {
-		Optional<Product> opt = repo.findByName(name);
+		Optional<Product> opt = repo.findByName(lowerCase(name));
 	    if (opt.isEmpty()) {
 	        throw new IllegalArgumentException("Product not found: " + name);
 	    }
@@ -31,7 +31,15 @@ public class ProductService {
 	}
 	
 	public void addProduct(String name, int quantity, Category category) {
-	    Product p = new Product(name, quantity, category);
+	    Optional<Product> existing = repo.findByName(lowerCase(name));
+	    if (existing.isPresent()) {
+	        Product p = existing.get();
+	        p.addQuantity(quantity);
+	        repo.save(p);
+	        System.out.println("Existing product: " + name + ". Increased quantity of this product.");
+	        return;
+	    }
+	    Product p = new Product(lowerCase(name), quantity, category);
 	    repo.save(p);
 	}
 	
@@ -39,7 +47,7 @@ public class ProductService {
 	    Product product = repo.findById(id);
 	    verifyNotNull(product);
 	    if (name != null) {
-	        product.setName(name);
+	        product.setName(lowerCase(name));
 	        repo.save(product);
 	    }
 	    else {
@@ -60,7 +68,7 @@ public class ProductService {
 	}
 	
 	public Optional<Product> getProduct(String name) {
-		return repo.findByName(name);
+		return repo.findByName(lowerCase(name));
 	}
 	
 	public List<Product> getAllProduct(){
@@ -83,7 +91,7 @@ public class ProductService {
 	
 	
 	public void increaseQuantity(String name, int q) { 
-	    Optional<Product> opt = repo.findByName(name);
+	    Optional<Product> opt = repo.findByName(lowerCase(name));
 	    if (opt.isEmpty()) {
 	        throw new IllegalArgumentException("Produit introuvable");
 	    }
@@ -101,7 +109,7 @@ public class ProductService {
 	}
 	
 	public void decreaseQuantity(String name, int q) { 
-	    Optional<Product> opt = repo.findByName(name);
+	    Optional<Product> opt = repo.findByName(lowerCase(name));
 	    if (opt.isEmpty()) {
 	        throw new IllegalArgumentException("Produit introuvable");
 	    }
@@ -116,6 +124,10 @@ public class ProductService {
 	    if(verifyThreshold(product.getId()) == true) {
 	    	 throw new IllegalArgumentException("Seuil de quantité atteint");
 	    }
+	}
+	
+	private String lowerCase(String name) {
+	    return name.toLowerCase().trim();
 	}
 
 }
