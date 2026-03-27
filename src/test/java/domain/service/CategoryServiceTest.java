@@ -29,14 +29,14 @@ class CategoryServiceTest {
 
     @BeforeEach
     public void setUp() {
-        cat = new Category("Fruit");
+        cat = new Category("fruit");
         cat.setId(1);
     }
 
     @Test
     public void shouldAddCategory() {
-        Category result = service.addCategory("Légume");
-        assertEquals("Légume", result.getName());
+        Category result = service.addCategory("légume");
+        assertEquals("légume", result.getName());
         verify(repo).save(result);
     }
     @Test
@@ -47,15 +47,15 @@ class CategoryServiceTest {
     @Test
     public void shouldModifyCategoryName() {
         when(repo.findById(1)).thenReturn(cat);
-        service.modifyNameCategory(1, "Viande");
-        assertEquals("Viande", cat.getName());
+        service.modifyNameCategory(1, "viande");
+        assertEquals("viande", cat.getName());
         verify(repo).save(cat);
     }
 
     @Test
     public void shouldModifyNameCategoryNotFound() {
         when(repo.findById(1)).thenReturn(null);
-        service.modifyNameCategory(1, "Surgelé");
+        service.modifyNameCategory(1, "surgelé");
         verify(repo, never()).save(any(Category.class));
     }
 
@@ -63,11 +63,11 @@ class CategoryServiceTest {
     public void shouldListAllCategories() {
         List<Category> list = new ArrayList<Category>();
         list.add(cat);
-        list.add(new Category("Boisson"));
+        list.add(new Category("boisson"));
         when(repo.findAll()).thenReturn(list);
         List<Category> result = service.listAllCategory();
         assertEquals(2, result.size());
-        assertEquals("Fruit", result.get(0).getName());
+        assertEquals("fruit", result.get(0).getName());
         verify(repo).findAll();
     }
 }
