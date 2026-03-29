@@ -21,11 +21,8 @@ public class AddProductCommandTest {
 	    String Input = "Banane\n12\nFruits\n";
 	    Scanner Scanner = new Scanner(Input);
 
-	    Category category = new Category("Fruits");
-	    when(categoryService.addCategory("Fruits")).thenReturn(category);
-
 	    AddProductCommand cmd = new AddProductCommand(categoryService, productService, Scanner);
 	    cmd.execute();
-	    verify(productService).addProduct("Banane", 12, category);
+	    verify(productService).addProduct("Banane", 12, "Fruits");
 	}
 }

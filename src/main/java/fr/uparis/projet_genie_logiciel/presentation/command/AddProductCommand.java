@@ -2,6 +2,7 @@ package fr.uparis.projet_genie_logiciel.presentation.command;
 
 import java.util.Scanner;
 
+import fr.uparis.projet_genie_logiciel.domain.model.Category;
 import fr.uparis.projet_genie_logiciel.domain.service.CategoryService;
 import fr.uparis.projet_genie_logiciel.domain.service.ProductService;
 
@@ -24,7 +25,7 @@ public class AddProductCommand implements Command {
         int quantity = Integer.parseInt(scanner.nextLine());
         System.out.print("Category: ");
         String nameCategory = scanner.nextLine();
-        service.addProduct(name, quantity, categoryService.addCategory(nameCategory)); //je dois ajouter une categorie mais je dois d'abord demander le nom puis...
+        service.addProduct(name, quantity, nameCategory);
         System.out.println("Entrée enregistrée.");
     }
 

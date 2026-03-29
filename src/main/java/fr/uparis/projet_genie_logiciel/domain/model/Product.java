@@ -1,11 +1,14 @@
 package fr.uparis.projet_genie_logiciel.domain.model;
 
+import fr.uparis.projet_genie_logiciel.domain.service.CategoryService;
+
 public class Product {
 	private int id;
 	private String name;
 	private int quantity;
 	private Category category;
 	private static int counter = 1;
+	private CategoryService cat;
 
 	
 	public Product(String name, int quantity, Category c) {
@@ -18,12 +21,7 @@ public class Product {
 	
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name +
-                ", quantity=" + quantity +
-                ", category=" + category.getName() +
-                '}';
+        return "Product{" + "id=" + id + ", name=" + name + ", quantity=" + quantity + ", category=" + category.getName() + "}";
     }
 
 	

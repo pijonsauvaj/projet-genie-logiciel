@@ -10,9 +10,11 @@ import fr.uparis.projet_genie_logiciel.persistance.ProductRepo;
 public class ProductService {
 	
 	private final ProductRepo repo;
+	private final CategoryService categoryService;
 
-	public ProductService(ProductRepo repo) {
+	public ProductService(ProductRepo repo, CategoryService categoryService) {
         this.repo = repo;
+        this.categoryService = categoryService;
     }
 	
 	public void verifyNotNull(Product product) {
@@ -30,7 +32,8 @@ public class ProductService {
 		repo.delete(p.getId());
 	}
 	
-	public void addProduct(String name, int quantity, Category category) {
+	public void addProduct(String name, int quantity, String categoryName) {
+		Category cat = categoryService.addCategory(categoryName);
 	    Optional<Product> existing = repo.findByName(lowerCase(name));
 	    if (existing.isPresent()) {
 	        Product p = existing.get();
@@ -39,7 +42,7 @@ public class ProductService {
 	        System.out.println("Existing product: " + name + ". Increased quantity of this product.");
 	        return;
 	    }
-	    Product p = new Product(lowerCase(name), quantity, category);
+	    Product p = new Product(lowerCase(name), quantity, cat);
 	    repo.save(p);
 	}
 	
