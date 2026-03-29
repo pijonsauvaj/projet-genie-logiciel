@@ -1,6 +1,7 @@
 package fr.uparis.projet_genie_logiciel.domain.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import fr.uparis.projet_genie_logiciel.domain.model.Category;
 import fr.uparis.projet_genie_logiciel.domain.model.Product;
@@ -17,11 +18,21 @@ public class CategoryService {
 	public void delCategory(int id) {
 		repo.delete(id);
 	}
-	public Category addCategory(String name) { //Je l'ai typé avec la class Category pour permettre de l'utiliser dans un addProduct (Service)
-		Category cat = new Category(lowerCase(name));
-		repo.save(cat);
-		return cat;
+
+	public Category addCategory(String name) {
+	    Optional<Category> existing = repo.findByName(lowerCase(name));
+	    if (existing.isPresent()) {
+	        Category cat = existing.get();
+	        repo.save(cat);
+	        System.out.println("Existing category: " + name + ". ");
+	        return cat;
+	    }
+	    Category cat = new Category(lowerCase(name));
+	    repo.save(cat);
+	    return cat;
 	}
+	
+	
 	public void modifyNameCategory(int id, String name) {
 		Category cat = repo.findById(id);
 		if(cat != null) {

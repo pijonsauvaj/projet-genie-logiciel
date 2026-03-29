@@ -70,7 +70,7 @@ class ProductServiceTest {
     }
     @Test
     public void shouldAddProduct() {
-        service.addProduct("tomate", 10, new Category("Fruit"));
+        service.addProduct("tomate", 10, "Fruit");
         verify(repo).save(any(Product.class));
     }
     @Test

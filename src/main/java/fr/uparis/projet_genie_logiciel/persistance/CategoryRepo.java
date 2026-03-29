@@ -2,6 +2,7 @@ package fr.uparis.projet_genie_logiciel.persistance;
 
 import java.util.*;
 import fr.uparis.projet_genie_logiciel.domain.model.Category;
+import fr.uparis.projet_genie_logiciel.domain.model.Product;
 
 public class CategoryRepo {
 
@@ -14,11 +15,16 @@ public class CategoryRepo {
     public Category findById(int id) {
         return categories.get(id);
     }
-
-    public List<Category> findAll() {
-        return new ArrayList<>(categories.values());
+    
+    public Optional<Category> findByName(String name) {
+        return  categories.values().stream()
+        	    .filter(product -> product.getName().equalsIgnoreCase(name)).findFirst();
     }
 
+    public List<Category> findAll() {
+        return categories.values().stream().toList();
+    }
+    
     public void delete(int id) {
         categories.remove(id);
     }

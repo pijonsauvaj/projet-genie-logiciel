@@ -19,10 +19,10 @@ public class AppTest {
     void appInitializationTest() {
         assertDoesNotThrow(() -> {
             Scanner scanner = new Scanner(System.in);
-            ProductRepo repo = new ProductRepo();
-            ProductService service = new ProductService(repo);
             CategoryRepo categoryRepo = new CategoryRepo();
             CategoryService categoryService = new CategoryService(categoryRepo);
+            ProductRepo repo = new ProductRepo();
+            ProductService service = new ProductService(repo, categoryService);
 
             CLI cli = new CLI();
             cli.register(new AddProductCommand(categoryService, service, scanner));

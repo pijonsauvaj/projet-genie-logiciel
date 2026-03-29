@@ -1,5 +1,4 @@
 package fr.uparis.projet_genie_logiciel;
-
 import fr.uparis.projet_genie_logiciel.persistance.CategoryRepo;
 import fr.uparis.projet_genie_logiciel.persistance.ProductRepo;
 import fr.uparis.projet_genie_logiciel.presentation.CLI;
@@ -8,6 +7,7 @@ import fr.uparis.projet_genie_logiciel.presentation.command.DecreaseProductComma
 import fr.uparis.projet_genie_logiciel.presentation.command.DeleteProductCommand;
 import fr.uparis.projet_genie_logiciel.presentation.command.ExitCommand;
 import fr.uparis.projet_genie_logiciel.presentation.command.IncreaseProductCommand;
+import fr.uparis.projet_genie_logiciel.presentation.command.ListCategoriesCommand;
 import fr.uparis.projet_genie_logiciel.presentation.command.ListProductsCommand;
 
 
@@ -20,10 +20,11 @@ import fr.uparis.projet_genie_logiciel.domain.service.ProductService;
 {
     public static void main( String[] args ){
 	    Scanner scanner = new Scanner(System.in);
-	    ProductRepo repo = new ProductRepo();
-	    ProductService service = new ProductService(repo);
 	    CategoryRepo categoryRepo = new CategoryRepo();
 	    CategoryService categoryService = new CategoryService(categoryRepo);
+	    ProductRepo repo = new ProductRepo();
+	    ProductService service = new ProductService(repo, categoryService);
+
 
 	    CLI cli = new CLI();
 	    cli.register(new AddProductCommand(categoryService, service, scanner));
@@ -31,6 +32,7 @@ import fr.uparis.projet_genie_logiciel.domain.service.ProductService;
 	    cli.register(new DeleteProductCommand(categoryService, service, scanner));
 	    cli.register(new IncreaseProductCommand(service, scanner));
 	    cli.register(new DecreaseProductCommand(service, scanner));
+	    cli.register(new ListCategoriesCommand(categoryService, scanner));
 	    cli.register(new ExitCommand());
 	    cli.run();
 	}
