@@ -16,6 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import fr.uparis.projet_genie_logiciel.domain.model.Category;
 import fr.uparis.projet_genie_logiciel.domain.model.Product;
+import fr.uparis.projet_genie_logiciel.domain.service.CategoryService;
 import fr.uparis.projet_genie_logiciel.domain.service.ProductService;
 import fr.uparis.projet_genie_logiciel.persistance.ProductRepo;
 
@@ -30,6 +31,9 @@ class ProductServiceTest {
 
     @Mock
     private ProductRepo repo;
+    @Mock 
+    private CategoryService categoryService;
+
 
     @InjectMocks
     private ProductService service;
