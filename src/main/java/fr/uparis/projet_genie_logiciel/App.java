@@ -16,9 +16,8 @@ import java.util.Scanner;
 import fr.uparis.projet_genie_logiciel.domain.service.CategoryService;
 import fr.uparis.projet_genie_logiciel.domain.service.ProductService;
 
- class App 
-{
-    public static void main( String[] args ){
+ class App{
+    public static void main(String[] args){
 	    Scanner scanner = new Scanner(System.in);
 	    CategoryRepo categoryRepo = new CategoryRepo();
 	    CategoryService categoryService = new CategoryService(categoryRepo);
