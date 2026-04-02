@@ -10,59 +10,57 @@ public class Product {
 	private static int counter = 1;
 	private CategoryService cat;
 
-	
 	public Product(String name, int quantity, Category c) {
 		this.id = counter++;
 		setName(name);
 		setQuantity(quantity);
 		this.category = c;
 	}
-	
-	
-    @Override
-    public String toString() {
-        return "Product{" + "id=" + id + ", name=" + name + ", quantity=" + quantity + ", category=" + category.getName() + "}";
-    }
 
-	
-	/* Je ne sais pas si increase et derease sont des méthodes métier ou service
-	public void IncreaseQuantity(int q) {
-		quantity+=q;
+	@Override
+	public String toString() {
+		return "Product{" + "id=" + id + ", name=" + name + ", quantity=" + quantity + ", category="
+				+ category.getName() + "}";
 	}
-	public void DecreaseQuantity(int q) {
-		quantity-=q;
-	}*/
-	
-	
+
+	/*
+	 * Je ne sais pas si increase et derease sont des méthodes métier ou service
+	 * public void IncreaseQuantity(int q) { quantity+=q; } public void
+	 * DecreaseQuantity(int q) { quantity-=q; }
+	 */
+
 	public int getId() {
 		return id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
-		if(name == null || name.isBlank()) {
+		if (name == null || name.isBlank()) {
 			throw new IllegalArgumentException("Le nom ne peut pas être vide");
 		}
 		this.name = name.toLowerCase().trim();
 	}
+
 	public int getQuantity() {
 		return quantity;
 	}
+
 	public void setQuantity(int quantity) {
-		if(quantity <= 0) {
+		if (quantity <= 0) {
 			throw new IllegalArgumentException("La quantité ne peut pas être négative ou nulle");
 		}
 		this.quantity = quantity;
 	}
-	
-	public void addQuantity(int q) {
-		this.quantity+=q;
-	}
 
+	public void addQuantity(int q) {
+		this.quantity += q;
+	}
 
 	public void setId(int i) {
-		this.id=i;
+		this.id = i;
 	}
-	
+
 }
