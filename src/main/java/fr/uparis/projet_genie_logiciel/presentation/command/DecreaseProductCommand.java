@@ -5,12 +5,13 @@ import java.util.Scanner;
 import fr.uparis.projet_genie_logiciel.domain.service.ProductService;
 
 public class DecreaseProductCommand implements Command {
+
 	private ProductService service;
 	private Scanner scanner;
 
 	public DecreaseProductCommand(ProductService service, Scanner scanner) {
 		this.service = service;
-		this.scanner = new Scanner(System.in);
+		this.scanner = scanner;
 	}
 
 	@Override
