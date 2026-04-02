@@ -16,9 +16,9 @@ class DeleteProductCommandTest {
     void shouldDeleteProductByName() {
         CategoryService categoryService = mock(CategoryService.class);
         ProductService productService = mock(ProductService.class);
-        String Input = "Banane\n";
-        Scanner Scanner = new Scanner(Input);
-        DeleteProductCommand cmd = new DeleteProductCommand(categoryService, productService, Scanner);
+        String input = "Banane\n";
+        Scanner scanner = new Scanner(input);
+        DeleteProductCommand cmd = new DeleteProductCommand(categoryService, productService, scanner);
         cmd.execute();
         verify(productService).delProduct("Banane");
         verifyNoMoreInteractions(productService, categoryService);
