@@ -18,21 +18,21 @@ import fr.uparis.projet_genie_logiciel.domain.service.ProductService;
 
  class App{
     public static void main(String[] args){
-	    Scanner scanner = new Scanner(System.in);
-	    CategoryRepo categoryRepo = new CategoryRepo();
+        Scanner scanner = new Scanner(System.in);
+        CategoryRepo categoryRepo = new CategoryRepo();
 	    CategoryService categoryService = new CategoryService(categoryRepo);
 	    ProductRepo repo = new ProductRepo();
 	    ProductService service = new ProductService(repo, categoryService);
 
 
-	    CLI cli = new CLI();
-	    cli.register(new AddProductCommand(categoryService, service, scanner));
-	    cli.register(new ListProductsCommand(categoryService, service, scanner));
-	    cli.register(new DeleteProductCommand(categoryService, service, scanner));
-	    cli.register(new IncreaseProductCommand(service, scanner));
-	    cli.register(new DecreaseProductCommand(service, scanner));
-	    cli.register(new ListCategoriesCommand(categoryService, scanner));
-	    cli.register(new ExitCommand());
-	    cli.run();
+        CLI cli = new CLI();
+        cli.register(new AddProductCommand(categoryService, service, scanner));
+        cli.register(new ListProductsCommand(categoryService, service, scanner));
+        cli.register(new DeleteProductCommand(categoryService, service, scanner));
+        cli.register(new IncreaseProductCommand(service, scanner));
+        cli.register(new DecreaseProductCommand(service, scanner));
+        cli.register(new ListCategoriesCommand(categoryService, scanner));
+        cli.register(new ExitCommand());
+        cli.run();
 	}
 }
