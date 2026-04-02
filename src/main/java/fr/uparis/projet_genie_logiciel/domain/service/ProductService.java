@@ -6,7 +6,6 @@ import java.util.Optional;
 import fr.uparis.projet_genie_logiciel.domain.model.Category;
 import fr.uparis.projet_genie_logiciel.domain.model.Product;
 import fr.uparis.projet_genie_logiciel.persistance.ProductRepo;
-import fr.uparis.projet_genie_logiciel.domain.service.CategoryService;
 
 
 public class ProductService {

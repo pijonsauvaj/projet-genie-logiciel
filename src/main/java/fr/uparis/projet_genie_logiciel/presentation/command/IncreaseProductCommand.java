@@ -9,7 +9,7 @@ public class IncreaseProductCommand implements Command{
 
     public IncreaseProductCommand(ProductService service, Scanner scanner) {
     	this.service = service;
-        this.scanner = new Scanner(System.in);
+    	this.scanner = scanner;
     }
 	
 	@Override
