@@ -5,37 +5,36 @@ public class Category {
 	private String name;
 	private static int counter = 1;
 
-	
-	public Category(String name ) {
+	public Category(String name) {
 		this.id = counter++;
 		setName(name);
 	}
-	
-	
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
-		this.id=id;
+		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
-		if(name == null || name.isBlank()) {
+		if (name == null || name.isBlank()) {
 			throw new IllegalArgumentException("Le nom ne peut pas être vide");
 		}
 		this.name = name;
 	}
-	
-	
-    @Override
-    public String toString() {
-        return "Category{" + "id=" + id + ", name=" + name + "}";
-    }
-    
-    
+
+	@Override
+	public String toString() {
+		return "Category{" + "id=" + id + ", name=" + name + "}";
+	}
+
 	public String lowerCase(String name) {
-	    return name.toLowerCase().trim();
+		return name.toLowerCase().trim();
 	}
 }
