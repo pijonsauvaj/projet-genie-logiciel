@@ -2,6 +2,7 @@ package domain.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
@@ -108,61 +109,66 @@ class ProductServiceTest {
 
 	@Test
 	public void shouldVerifyNotNull() {
-		try {
-			service.verifyNotNull(null);
-		} catch (IllegalArgumentException e) {
-			assertEquals("Produit introuvable", e.getMessage());
-		}
+	    IllegalArgumentException ex = assertThrows(
+	        IllegalArgumentException.class,
+	        () -> service.verifyNotNull(null)
+	    );
+	    assertEquals("Product not found", ex.getMessage());
 	}
 
 	@Test
 	public void shoulDelProductNotFound() {
 		when(repo.findByName("tomate")).thenReturn(Optional.<Product>empty());
-		try {
-			service.delProduct("tomate");
-		} catch (IllegalArgumentException e) {
-			assertTrue(e.getMessage().contains("Product not found"));
-		}
+		IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,() -> service.delProduct("tomate"));
+			assertEquals("Product not found", ex.getMessage());
 	}
 
 	@Test
 	public void shouldModifyNameProductNotFound() {
-		when(repo.findById(1)).thenReturn(null);
-		try {
-			service.modifyNameProduct(1, "Carotte");
-		} catch (IllegalArgumentException e) {
-			assertEquals("Produit introuvable", e.getMessage());
-		}
+	    when(repo.findById(1)).thenReturn(null);
+
+	    IllegalArgumentException ex = assertThrows(
+	        IllegalArgumentException.class,
+	        () -> service.modifyNameProduct(1, "Carotte")
+	    );
+
+	    assertEquals("Product not found", ex.getMessage());
 	}
 
 	@Test
 	public void shouldModifyNameProductNameNull() {
-		when(repo.findById(1)).thenReturn(p);
-		try {
-			service.modifyNameProduct(1, null);
-		} catch (IllegalArgumentException e) {
-			assertEquals("Le nom ne peut pas être vide.", e.getMessage());
-		}
+	    when(repo.findById(1)).thenReturn(p);
+
+	    IllegalArgumentException ex = assertThrows(
+	        IllegalArgumentException.class,
+	        () -> service.modifyNameProduct(1, null)
+	    );
+
+	    assertEquals("Le nom ne peut pas être vide.", ex.getMessage());
 	}
 
 	@Test
 	public void shouldModifyQuantityProducNotFound() {
-		when(repo.findById(1)).thenReturn(null);
-		try {
-			service.modifyQuantityProduct(1, 10);
-		} catch (IllegalArgumentException e) {
-			assertEquals("Produit introuvable", e.getMessage());
-		}
+	    when(repo.findById(1)).thenReturn(null);
+
+	    IllegalArgumentException ex = assertThrows(
+	        IllegalArgumentException.class,
+	        () -> service.modifyQuantityProduct(1, 10)
+	    );
+
+	    assertEquals("Product not found", ex.getMessage());
 	}
 
 	@Test
 	public void shouldModifyQuantityProductQuantityInvalid() {
-		when(repo.findById(1)).thenReturn(p);
-		try {
-			service.modifyQuantityProduct(1, 0);
-		} catch (IllegalArgumentException e) {
-			assertEquals("La quantité doit être positif.", e.getMessage());
-		}
+	    when(repo.findById(1)).thenReturn(p);
+
+	    IllegalArgumentException ex = assertThrows(
+	        IllegalArgumentException.class,
+	        () -> service.modifyQuantityProduct(1, 0)
+	    );
+
+	    assertEquals("La quantité doit être positif.", ex.getMessage());
 	}
 
 	@Test
@@ -197,7 +203,7 @@ class ProductServiceTest {
 		try {
 			service.increaseQuantity("tomate", 5);
 		} catch (IllegalArgumentException e) {
-			assertEquals("Produit introuvable", e.getMessage());
+			assertEquals("Product not found", e.getMessage());
 		}
 	}
 
@@ -240,18 +246,20 @@ class ProductServiceTest {
 		try {
 			service.decreaseQuantity("tomate", 3);
 		} catch (IllegalArgumentException e) {
-			assertEquals("Produit introuvable", e.getMessage());
+			assertEquals("Product not found", e.getMessage());
 		}
 	}
 
 	@Test
 	public void shouldDecreaseQuantityInvalid() {
-		when(repo.findByName("tomate")).thenReturn(Optional.of(p));
-		try {
-			service.decreaseQuantity("tomate", 0);
-		} catch (IllegalArgumentException e) {
-			assertEquals("Quantité pas assez grande", e.getMessage());
-		}
+	    when(repo.findByName("tomate")).thenReturn(Optional.of(p));
+
+	    IllegalArgumentException ex = assertThrows(
+	        IllegalArgumentException.class,
+	        () -> service.decreaseQuantity("tomate", 0)
+	    );
+
+	    assertEquals("Quantité pas assez grande", ex.getMessage());
 	}
 
 	@Test

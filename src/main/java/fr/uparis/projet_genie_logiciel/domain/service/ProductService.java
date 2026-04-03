@@ -19,14 +19,14 @@ public class ProductService {
 
 	public void verifyNotNull(Product product) {
 		if (product == null) {
-			throw new IllegalArgumentException("Produit introuvable");
+			throw new IllegalArgumentException("Product not found");
 		}
 	}
 
 	public void delProduct(String name) {
 		Optional<Product> opt = repo.findByName(lowerCase(name));
 		if (opt.isEmpty()) {
-			throw new IllegalArgumentException("Product not found: " + name);
+			throw new IllegalArgumentException("Product not found");
 		}
 		Product p = opt.get();
 		repo.delete(p.getId());
@@ -93,7 +93,7 @@ public class ProductService {
 	public void increaseQuantity(String name, int q) {
 		Optional<Product> opt = repo.findByName(lowerCase(name));
 		if (opt.isEmpty()) {
-			throw new IllegalArgumentException("Produit introuvable");
+			throw new IllegalArgumentException("Product not found");
 		}
 		Product product = opt.get();
 		if (q <= 0) {
@@ -110,7 +110,7 @@ public class ProductService {
 	public void decreaseQuantity(String name, int q) {
 		Optional<Product> opt = repo.findByName(lowerCase(name));
 		if (opt.isEmpty()) {
-			throw new IllegalArgumentException("Produit introuvable");
+			throw new IllegalArgumentException("Product not found");
 		}
 		Product product = opt.get();
 		if (q <= 0) {
