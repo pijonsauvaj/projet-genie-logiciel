@@ -8,10 +8,10 @@ public class IncreaseProductCommand implements Command {
 	private ProductService service;
 	private Scanner scanner;
 
-	public IncreaseProductCommand(ProductService service, Scanner scanner) {
-		this.service = service;
-		this.scanner = new Scanner(System.in);
-	}
+    public IncreaseProductCommand(ProductService service, Scanner scanner) {
+    	this.service = service;
+    	this.scanner = scanner;
+    }
 
 	@Override
 	public void execute() {

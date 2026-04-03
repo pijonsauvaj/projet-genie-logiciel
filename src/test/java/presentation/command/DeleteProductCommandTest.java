@@ -14,15 +14,15 @@ import fr.uparis.projet_genie_logiciel.presentation.command.DeleteProductCommand
 
 class DeleteProductCommandTest {
 
-	@Test
-	void shouldDeleteProductByName() {
-		CategoryService categoryService = mock(CategoryService.class);
-		ProductService productService = mock(ProductService.class);
-		String Input = "Banane\n";
-		Scanner Scanner = new Scanner(Input);
-		DeleteProductCommand cmd = new DeleteProductCommand(categoryService, productService, Scanner);
-		cmd.execute();
-		verify(productService).delProduct("Banane");
-		verifyNoMoreInteractions(productService, categoryService);
-	}
+    @Test
+    void shouldDeleteProductByName() {
+        CategoryService categoryService = mock(CategoryService.class);
+        ProductService productService = mock(ProductService.class);
+        String input = "Banane\n";
+        Scanner scanner = new Scanner(input);
+        DeleteProductCommand cmd = new DeleteProductCommand(categoryService, productService, scanner);
+        cmd.execute();
+        verify(productService).delProduct("Banane");
+        verifyNoMoreInteractions(productService, categoryService);
+    }
 }
