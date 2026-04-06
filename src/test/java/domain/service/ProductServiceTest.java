@@ -111,7 +111,7 @@ class ProductServiceTest {
 		try {
 			service.verifyNotNull(null);
 		} catch (IllegalArgumentException e) {
-			assertEquals("Produit introuvable", e.getMessage());
+			assertEquals("Product not found", e.getMessage());
 		}
 	}
 
@@ -131,7 +131,7 @@ class ProductServiceTest {
 		try {
 			service.modifyNameProduct(1, "Carotte");
 		} catch (IllegalArgumentException e) {
-			assertEquals("Produit introuvable", e.getMessage());
+			assertEquals("Product not found", e.getMessage());
 		}
 	}
 
@@ -141,7 +141,7 @@ class ProductServiceTest {
 		try {
 			service.modifyNameProduct(1, null);
 		} catch (IllegalArgumentException e) {
-			assertEquals("Le nom ne peut pas être vide.", e.getMessage());
+			assertEquals("name can't be empty.", e.getMessage());
 		}
 	}
 
@@ -151,7 +151,7 @@ class ProductServiceTest {
 		try {
 			service.modifyQuantityProduct(1, 10);
 		} catch (IllegalArgumentException e) {
-			assertEquals("Produit introuvable", e.getMessage());
+			assertEquals("Product not found", e.getMessage());
 		}
 	}
 
@@ -161,7 +161,7 @@ class ProductServiceTest {
 		try {
 			service.modifyQuantityProduct(1, 0);
 		} catch (IllegalArgumentException e) {
-			assertEquals("La quantité doit être positif.", e.getMessage());
+			assertEquals("quantity must be positif.", e.getMessage());
 		}
 	}
 
@@ -197,7 +197,7 @@ class ProductServiceTest {
 		try {
 			service.increaseQuantity("tomate", 5);
 		} catch (IllegalArgumentException e) {
-			assertEquals("Produit introuvable", e.getMessage());
+			assertEquals("Product not found", e.getMessage());
 		}
 	}
 
@@ -207,7 +207,7 @@ class ProductServiceTest {
 		try {
 			service.increaseQuantity("tomate", 0);
 		} catch (IllegalArgumentException e) {
-			assertEquals("Quantité pas assez grande", e.getMessage());
+			assertEquals("Quantity must be superior", e.getMessage());
 		}
 	}
 
@@ -240,7 +240,7 @@ class ProductServiceTest {
 		try {
 			service.decreaseQuantity("tomate", 3);
 		} catch (IllegalArgumentException e) {
-			assertEquals("Produit introuvable", e.getMessage());
+			assertEquals("Product not found", e.getMessage());
 		}
 	}
 
@@ -250,7 +250,7 @@ class ProductServiceTest {
 		try {
 			service.decreaseQuantity("tomate", 0);
 		} catch (IllegalArgumentException e) {
-			assertEquals("Quantité pas assez grande", e.getMessage());
+			assertEquals("Quantity must be superior", e.getMessage());
 		}
 	}
 
@@ -263,7 +263,7 @@ class ProductServiceTest {
 		try {
 			service.decreaseQuantity("tomate", 1);
 		} catch (IllegalArgumentException e) {
-			assertEquals("Seuil de quantité atteint", e.getMessage());
+			assertEquals("Threshold reach", e.getMessage());
 		}
 	}
 }
