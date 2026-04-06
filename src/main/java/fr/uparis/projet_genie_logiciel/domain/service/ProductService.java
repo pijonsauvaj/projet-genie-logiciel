@@ -11,7 +11,7 @@ public class ProductService {
 
 	private final ProductRepo repo;
 	private final CategoryService categoryService;
-
+	final static int THRESHOLD = 10;
 	public ProductService(ProductRepo repo, CategoryService categoryService) {
 		this.repo = repo;
 		this.categoryService = categoryService;
@@ -83,8 +83,7 @@ public class ProductService {
 	public boolean verifyThreshold(int id) {
 		Product p = repo.findById(id);
 		verifyNotNull(p);
-		int threshold = 10;
-		if (p.getQuantity() <= threshold) {
+		if (p.getQuantity() <= THRESHOLD) {
 			return true;
 		}
 		return false;
