@@ -20,12 +20,6 @@ public class Product {
 				+ category.getName() + "}";
 	}
 
-	/*
-	 * Je ne sais pas si increase et derease sont des méthodes métier ou service
-	 * public void IncreaseQuantity(int q) { quantity+=q; } public void
-	 * DecreaseQuantity(int q) { quantity-=q; }
-	 */
-
 	public int getId() {
 		return id;
 	}
