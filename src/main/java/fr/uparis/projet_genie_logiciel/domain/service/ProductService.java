@@ -102,7 +102,7 @@ public class ProductService {
 			product.addQuantity(q);
 			repo.save(product);
 		}
-		if (verifyThreshold(product.getId()) == true) {
+		if (verifyThreshold(product.getId())) {
 			throw new IllegalArgumentException("threshold reach");
 		}
 	}
@@ -119,7 +119,7 @@ public class ProductService {
 			product.addQuantity(-q);
 			repo.save(product);
 		}
-		if (verifyThreshold(product.getId()) == true) {
+		if (verifyThreshold(product.getId())) {
 			throw new IllegalArgumentException("Threshold reach");
 		}
 	}
