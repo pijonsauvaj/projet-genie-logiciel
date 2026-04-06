@@ -45,11 +45,11 @@ class ProductServiceTest {
     public void shouldIncreaseQuantity() {
         p.setId(1);
         when(repo.findByName("tomate")).thenReturn(Optional.of(p));
+        when(repo.findById(1)).thenReturn(p);
         service.increaseQuantity("tomate", 5);
         assertEquals(25, p.getQuantity());
         verify(repo).save(p);
     }
-
 
     @Test
     public void shouldModifyName() {
@@ -230,9 +230,9 @@ class ProductServiceTest {
     public void shouldIncreaseQuantityThresholdReached() {
         p.setId(1);
         p.setQuantity(9);
-
         when(repo.findByName("tomate")).thenReturn(Optional.of(p));
-
+        when(repo.findById(1)).thenAnswer(inv -> p); 
+        
         IllegalArgumentException ex = assertThrows(
             IllegalArgumentException.class,
             () -> service.increaseQuantity("tomate", 1)
@@ -240,8 +240,6 @@ class ProductServiceTest {
 
         assertEquals("threshold reach", ex.getMessage());
     }
-
-
 
     @Test
     public void shouldDecreaseQuantityCorrectly() {
