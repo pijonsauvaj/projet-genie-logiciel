@@ -101,8 +101,8 @@ public class ProductService {
 			product.addQuantity(q);
 			repo.save(product);
 		}
-		if (verifyThreshold(product.getId())) {
-			throw new IllegalArgumentException("threshold reach");
+		if (product.getQuantity() <= THRESHOLD) {
+		    throw new IllegalArgumentException("threshold reach");
 		}
 	}
 
