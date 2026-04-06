@@ -229,7 +229,7 @@ class ProductServiceTest {
     @Test
     public void shouldIncreaseQuantityThresholdReached() {
         p.setId(1);
-        p.setQuantity(10);
+        p.setQuantity(9);
         when(repo.findByName("tomate")).thenReturn(Optional.of(p));
         when(repo.findById(1)).thenReturn(p);
 
