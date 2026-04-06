@@ -1,14 +1,11 @@
 package fr.uparis.projet_genie_logiciel.domain.model;
 
-import fr.uparis.projet_genie_logiciel.domain.service.CategoryService;
-
 public class Product {
 	private int id;
 	private String name;
 	private int quantity;
 	private Category category;
 	private static int counter = 1;
-	private CategoryService cat;
 
 	public Product(String name, int quantity, Category c) {
 		this.id = counter++;
