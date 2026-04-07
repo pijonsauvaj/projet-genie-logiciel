@@ -1,7 +1,7 @@
 ## CI Pipeline
 ![CI](https://github.com/pijonsauvaj/projet-genie-logiciel/actions/workflows/ci.yml/badge.svg)
 
-##Sonar Qube
+## Sonar Qube
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=pijonsauvaj_projet-genie-logiciel&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=pijonsauvaj_projet-genie-logiciel)
 
 ## Team
