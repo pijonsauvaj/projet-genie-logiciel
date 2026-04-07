@@ -80,7 +80,7 @@ class ProductServiceTest {
 
     @Test
     public void shouldAddProduct() {
-        when(categoryService.addCategory("Fruit")).thenReturn(new Category("Fruit"));
+    	when(categoryService.addCategory("Fruit")).thenReturn(true);
         service.addProduct("tomate", 10, "Fruit");
         verify(repo).save(any(Product.class));
     }
