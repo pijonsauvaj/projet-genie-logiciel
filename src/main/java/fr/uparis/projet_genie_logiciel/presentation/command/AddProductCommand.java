@@ -18,15 +18,20 @@ public class AddProductCommand implements Command {
 
 	@Override
 	public void execute() {
-		System.out.print("Name: ");
-		String name = scanner.nextLine();
-		System.out.print("Quantity: ");
-		int quantity = Integer.parseInt(scanner.nextLine());
-		System.out.print("Category: ");
-		String nameCategory = scanner.nextLine();
-		service.addProduct(name, quantity, nameCategory);
-		System.out.println("Entrée enregistrée.");
+	    System.out.print("Name: ");
+	    String name = scanner.nextLine();
+	    System.out.print("Quantity: ");
+	    int quantity = Integer.parseInt(scanner.nextLine());
+	    System.out.print("Category: ");
+	    String nameCategory = scanner.nextLine();
+	    boolean created = service.addProduct(name, quantity, nameCategory);
+	    if (created) {
+	        System.out.println("Product added.");
+	    } else {
+	        System.out.println("Existing product: quantity increased.");
+	    }
 	}
+
 
 	@Override
 	public String getName() {

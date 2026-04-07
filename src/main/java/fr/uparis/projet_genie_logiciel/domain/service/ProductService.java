@@ -32,19 +32,20 @@ public class ProductService {
 		repo.delete(p.getId());
 	}
 
-	public void addProduct(String name, int quantity, String categoryName) {
-		Category cat = categoryService.addCategory(categoryName);
-		Optional<Product> existing = repo.findByName(lowerCase(name));
-		if (existing.isPresent()) {
-			Product p = existing.get();
-			p.addQuantity(quantity);
-			repo.save(p);
-			System.out.println("Existing product: " + name + ". Increased quantity of this product.");
-			return;
-		}
-		Product p = new Product(lowerCase(name), quantity, cat);
-		repo.save(p);
+	public boolean addProduct(String name, int quantity, String categoryName) {
+	    Category cat = categoryService.addCategory(categoryName);
+	    Optional<Product> existing = repo.findByName(lowerCase(name));
+	    if (existing.isPresent()) {
+	        Product p = existing.get();
+	        p.addQuantity(quantity);
+	        repo.save(p);
+	        return false;
+	    }
+	    Product p = new Product(lowerCase(name), quantity, cat);
+	    repo.save(p);
+	    return true;
 	}
+
 
 	public void modifyNameProduct(int id, String name) {
 		Product product = repo.findById(id);
