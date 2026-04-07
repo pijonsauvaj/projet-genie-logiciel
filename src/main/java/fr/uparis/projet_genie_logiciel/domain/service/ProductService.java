@@ -33,7 +33,7 @@ public class ProductService {
 	}
 
 	public boolean addProduct(String name, int quantity, String categoryName) {
-	    Category cat = categoryService.addCategory(categoryName);
+	    categoryService.addCategory(categoryName);
 	    Optional<Product> existing = repo.findByName(lowerCase(name));
 	    if (existing.isPresent()) {
 	        Product p = existing.get();
@@ -41,10 +41,12 @@ public class ProductService {
 	        repo.save(p);
 	        return false;
 	    }
+	    Category cat = new Category(lowerCase(categoryName));
 	    Product p = new Product(lowerCase(name), quantity, cat);
 	    repo.save(p);
 	    return true;
 	}
+
 
 
 	public void modifyNameProduct(int id, String name) {

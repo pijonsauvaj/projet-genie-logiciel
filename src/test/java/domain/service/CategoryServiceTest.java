@@ -1,6 +1,8 @@
 package domain.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -8,6 +10,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,9 +41,19 @@ class CategoryServiceTest {
 
 	@Test
 	public void shouldAddCategory() {
-		Category result = service.addCategory("légume");
-		assertEquals("légume", result.getName());
-		verify(repo).save(result);
+	    when(repo.findByName("légume")).thenReturn(Optional.empty());
+	    boolean created = service.addCategory("légume");
+	    assertTrue(created);
+	    verify(repo).save(any(Category.class));
+	}
+	
+	@Test
+	public void shouldNotAddExistingCategory() {
+	    Category existing = new Category("légume");
+	    when(repo.findByName("légume")).thenReturn(Optional.of(existing));
+	    boolean created = service.addCategory("légume");
+	    assertFalse(created);
+	    verify(repo).save(existing);
 	}
 
 	@Test
