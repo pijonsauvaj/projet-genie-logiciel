@@ -1,4 +1,5 @@
 package fr.uparis.projet_genie_logiciel.domain.model;
+import fr.uparis.projet_genie_logiciel.domain.utils.Utils;
 
 public class Category {
 	private int id;
@@ -34,8 +35,5 @@ public class Category {
         return "Category{" + "id=" + id + ", name=" + name + "}";
     }
     
-    
-	public String lowerCase(String name) {
-	    return name.toLowerCase().trim();
-	}
+
 }

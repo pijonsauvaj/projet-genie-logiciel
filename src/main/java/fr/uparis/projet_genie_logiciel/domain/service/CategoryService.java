@@ -7,6 +7,7 @@ import fr.uparis.projet_genie_logiciel.domain.model.Category;
 import fr.uparis.projet_genie_logiciel.domain.model.Product;
 import fr.uparis.projet_genie_logiciel.persistance.CategoryRepo;
 import fr.uparis.projet_genie_logiciel.persistance.ProductRepo;
+import fr.uparis.projet_genie_logiciel.domain.utils.Utils;
 
 public class CategoryService {
 	private final CategoryRepo repo;
@@ -20,14 +21,14 @@ public class CategoryService {
 	}
 
 	public Category addCategory(String name) {
-	    Optional<Category> existing = repo.findByName(lowerCase(name));
+	    Optional<Category> existing = repo.findByName(Utils.lowerCase(name));
 	    if (existing.isPresent()) {
 	        Category cat = existing.get();
 	        repo.save(cat);
 	        System.out.println("Existing category: " + name + ". ");
 	        return cat;
 	    }
-	    Category cat = new Category(lowerCase(name));
+	    Category cat = new Category(Utils.lowerCase(name));
 	    repo.save(cat);
 	    return cat;
 	}
@@ -36,7 +37,7 @@ public class CategoryService {
 	public void modifyNameCategory(int id, String name) {
 		Category cat = repo.findById(id);
 		if(cat != null) {
-			cat.setName(lowerCase(name));
+			cat.setName(Utils.lowerCase(name));
 			repo.save(cat);
 		}
 	}
@@ -45,7 +46,4 @@ public class CategoryService {
 		return repo.findAll();
 	}
 	
-	private String lowerCase(String name) {
-	    return name.toLowerCase().trim();
-	}
 }

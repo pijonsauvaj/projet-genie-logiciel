@@ -2,17 +2,35 @@
 target/
 *.class
 bin/
+build/
+
 # IDE
 .project
 .classpath
 .settings/
 .metadata/
+.idea/
+.vscode/
+*.iml
+
 # OS
 .DS_Store
 Thumbs.db
+
 # Logs
 *.log
+hs_err_pid*.log
+hs_err_pid*
+
 # Package files
 *.jar
 *.war
 *.ear
+
+# Secrets
+.env
+*.pem
+*.key
+secrets.properties
+
+/.idea/

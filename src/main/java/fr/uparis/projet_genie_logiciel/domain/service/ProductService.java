@@ -6,6 +6,7 @@ import java.util.Optional;
 import fr.uparis.projet_genie_logiciel.domain.model.Category;
 import fr.uparis.projet_genie_logiciel.domain.model.Product;
 import fr.uparis.projet_genie_logiciel.persistance.ProductRepo;
+import fr.uparis.projet_genie_logiciel.domain.utils.Utils;
 
 public class ProductService {
 	
@@ -24,7 +25,7 @@ public class ProductService {
 	}
 	
 	public void delProduct(String name) {
-		Optional<Product> opt = repo.findByName(lowerCase(name));
+		Optional<Product> opt = repo.findByName(Utils.lowerCase(name));
 	    if (opt.isEmpty()) {
 	        throw new IllegalArgumentException("Product not found: " + name);
 	    }
@@ -34,7 +35,7 @@ public class ProductService {
 	
 	public void addProduct(String name, int quantity, String categoryName) {
 		Category cat = categoryService.addCategory(categoryName);
-	    Optional<Product> existing = repo.findByName(lowerCase(name));
+	    Optional<Product> existing = repo.findByName(Utils.lowerCase(name));
 	    if (existing.isPresent()) {
 	        Product p = existing.get();
 	        p.addQuantity(quantity);
@@ -42,7 +43,7 @@ public class ProductService {
 	        System.out.println("Existing product: " + name + ". Increased quantity of this product.");
 	        return;
 	    }
-	    Product p = new Product(lowerCase(name), quantity, cat);
+	    Product p = new Product(Utils.lowerCase(name), quantity, cat);
 	    repo.save(p);
 	}
 	
@@ -50,7 +51,7 @@ public class ProductService {
 	    Product product = repo.findById(id);
 	    verifyNotNull(product);
 	    if (name != null) {
-	        product.setName(lowerCase(name));
+	        product.setName(Utils.lowerCase(name));
 	        repo.save(product);
 	    }
 	    else {
@@ -71,7 +72,7 @@ public class ProductService {
 	}
 	
 	public Optional<Product> getProduct(String name) {
-		return repo.findByName(lowerCase(name));
+		return repo.findByName(Utils.lowerCase(name));
 	}
 	
 	public List<Product> getAllProduct(){
@@ -94,7 +95,7 @@ public class ProductService {
 	
 	
 	public void increaseQuantity(String name, int q) { 
-	    Optional<Product> opt = repo.findByName(lowerCase(name));
+	    Optional<Product> opt = repo.findByName(Utils.lowerCase(name));
 	    if (opt.isEmpty()) {
 	        throw new IllegalArgumentException("Produit introuvable");
 	    }
@@ -112,7 +113,7 @@ public class ProductService {
 	}
 	
 	public void decreaseQuantity(String name, int q) { 
-	    Optional<Product> opt = repo.findByName(lowerCase(name));
+	    Optional<Product> opt = repo.findByName(Utils.lowerCase(name));
 	    if (opt.isEmpty()) {
 	        throw new IllegalArgumentException("Produit introuvable");
 	    }
@@ -129,8 +130,5 @@ public class ProductService {
 	    }
 	}
 	
-	private String lowerCase(String name) {
-	    return name.toLowerCase().trim();
-	}
 
 }
