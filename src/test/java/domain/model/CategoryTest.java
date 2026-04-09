@@ -12,29 +12,30 @@ import fr.uparis.projet_genie_logiciel.domain.model.Category;
 
 public class CategoryTest {
 	Category cat;
-    @BeforeEach
-    void setUp() {
-        cat = new Category("Legume");
-    }
-    
-    @Test
-    void shouldCreateProduct() {
-    	Category category = new Category("Fruit");
-    	assertNotNull(category);
-        assertEquals("Fruit", category.getName());
-        assertTrue(category.getId() > 0);
-    }
 
-    @Test
-    void shouldChangeName() {
-        cat.setName("Viande");
-        assertEquals("Viande", cat.getName());
-    }
-    
-    @Test
-    void shouldNotAllowEmptyName() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            cat.setName("");
-        });
-    }
+	@BeforeEach
+	void setUp() {
+		cat = new Category("Legume");
+	}
+
+	@Test
+	void shouldCreateProduct() {
+		Category category = new Category("Fruit");
+		assertNotNull(category);
+		assertEquals("Fruit", category.getName());
+		assertTrue(category.getId() > 0);
+	}
+
+	@Test
+	void shouldChangeName() {
+		cat.setName("Viande");
+		assertEquals("Viande", cat.getName());
+	}
+
+	@Test
+	void shouldNotAllowEmptyName() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			cat.setName("");
+		});
+	}
 }

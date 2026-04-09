@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import fr.uparis.projet_genie_logiciel.domain.model.Category;
-import fr.uparis.projet_genie_logiciel.domain.model.Product;
 import fr.uparis.projet_genie_logiciel.persistance.CategoryRepo;
 import fr.uparis.projet_genie_logiciel.persistance.ProductRepo;
 import fr.uparis.projet_genie_logiciel.domain.utils.Utils;
@@ -13,9 +12,9 @@ public class CategoryService {
 	private final CategoryRepo repo;
 
 	public CategoryService(CategoryRepo repo) {
-        this.repo = repo;
-    }
-	
+		this.repo = repo;
+	}
+
 	public void delCategory(int id) {
 		repo.delete(id);
 	}
@@ -41,8 +40,8 @@ public class CategoryService {
 			repo.save(cat);
 		}
 	}
-	
-	public List<Category> listAllCategory(){
+
+	public List<Category> listAllCategory() {
 		return repo.findAll();
 	}
 	
