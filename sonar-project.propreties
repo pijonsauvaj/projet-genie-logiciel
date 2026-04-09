@@ -1,0 +1,2 @@
+sonar.exclusions=src/main/java/fr/uparis/projet_genie_logiciel/App.java, \
+                 src/test.java
