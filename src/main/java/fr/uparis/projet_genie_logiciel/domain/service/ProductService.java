@@ -77,7 +77,10 @@ public class ProductService {
 	}
 
 	// réfléchir la logique
-	public void listProductByCategory() {// réfléchir la logique
+	public void listProductByCategory() {
+	    // Méthode volontairement laissée vide pour le moment.
+	    // Elle sera implémentée lorsque la logique de regroupement par catégorie sera définie.
+	    throw new UnsupportedOperationException("Not implemented yet");
 	}
 
 	public boolean verifyThreshold(int id) {
