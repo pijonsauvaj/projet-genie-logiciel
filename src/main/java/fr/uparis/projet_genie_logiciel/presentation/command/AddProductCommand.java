@@ -25,7 +25,7 @@ public class AddProductCommand implements Command {
 		System.out.print("Category: ");
 		String nameCategory = scanner.nextLine();
 		service.addProduct(name, quantity, nameCategory);
-		System.out.println("Entrée enregistrée.");
+		System.out.println("Registered.");
 	}
 
 	@Override
