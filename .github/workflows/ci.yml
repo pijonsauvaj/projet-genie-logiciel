@@ -16,14 +16,21 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: '17'
-      - name: SonarQube Cloud Scan
+      - name: Build
+        run: mvn compile -B
+      - name: Run tests
+        run: mvn test -B
+              - name: SonarQube Cloud Scan
         uses: SonarSource/sonarcloud-github-action@master
+        with:
+          args: >
+            -Dsonar.projectKey=pijonsauvaj_projet-genie-logiciel
+            -Dsonar.organization=pijonsauvaj
+            -Dsonar.java.binaries=target/classes
+            -Dsonar.exclusions=src/main/java/fr/uparis/projet_genie_logiciel/App.java
+            -Dsonar.test.exclusions=src/test/**
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           distribution: 'temurin'
           cache: maven
-      - name: Build
-        run: mvn compile -B
-      - name: Run tests
-        run: mvn test -B
