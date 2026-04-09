@@ -77,7 +77,7 @@ public class ProductService {
 	}
 
 	// réfléchir la logique
-	public void listProductByCategory() {
+	public void listProductByCategory() {// réfléchir la logique
 	}
 
 	public boolean verifyThreshold(int id) {
