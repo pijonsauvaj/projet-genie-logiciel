@@ -24,7 +24,7 @@ public class Category {
 
 	public void setName(String name) {
 		if (name == null || name.isBlank()) {
-			throw new IllegalArgumentException("Le nom ne peut pas être vide");
+			throw new IllegalArgumentException("name can't be empty");
 		}
 		this.name = name;
 	}
@@ -34,7 +34,4 @@ public class Category {
 		return "Category{" + "id=" + id + ", name=" + name + "}";
 	}
 
-	public String lowerCase(String name) {
-		return name.toLowerCase().trim();
-	}
 }

@@ -6,6 +6,7 @@ import java.util.Optional;
 import fr.uparis.projet_genie_logiciel.domain.model.Category;
 import fr.uparis.projet_genie_logiciel.domain.model.Product;
 import fr.uparis.projet_genie_logiciel.persistance.ProductRepo;
+import static fr.uparis.projet_genie_logiciel.util.StringUtils.lowerCase;
 
 public class ProductService {
 
@@ -125,10 +126,6 @@ public class ProductService {
 		if (verifyThreshold(product.getId()) == true) {
 			throw new IllegalArgumentException("Seuil de quantité atteint");
 		}
-	}
-
-	private String lowerCase(String name) {
-		return name.toLowerCase().trim();
 	}
 
 }
