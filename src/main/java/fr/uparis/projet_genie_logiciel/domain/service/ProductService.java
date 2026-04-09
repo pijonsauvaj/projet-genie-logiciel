@@ -12,6 +12,7 @@ public class ProductService {
 	private final ProductRepo repo;
 	private final CategoryService categoryService;
 	final static int THRESHOLD = 10;
+
 	public ProductService(ProductRepo repo, CategoryService categoryService) {
 		this.repo = repo;
 		this.categoryService = categoryService;
@@ -32,18 +33,19 @@ public class ProductService {
 		repo.delete(p.getId());
 	}
 
-	public void addProduct(String name, int quantity, String categoryName) {
-		Category cat = categoryService.addCategory(categoryName);
+	public boolean addProduct(String name, int quantity, String categoryName) {
+		categoryService.addCategory(categoryName);
 		Optional<Product> existing = repo.findByName(lowerCase(name));
 		if (existing.isPresent()) {
 			Product p = existing.get();
 			p.addQuantity(quantity);
 			repo.save(p);
-			System.out.println("Existing product: " + name + ". Increased quantity of this product.");
-			return;
+			return false;
 		}
+		Category cat = new Category(lowerCase(categoryName));
 		Product p = new Product(lowerCase(name), quantity, cat);
 		repo.save(p);
+		return true;
 	}
 
 	public void modifyNameProduct(int id, String name) {
