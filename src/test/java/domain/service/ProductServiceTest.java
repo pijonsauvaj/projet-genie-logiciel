@@ -26,6 +26,7 @@ import fr.uparis.projet_genie_logiciel.persistance.ProductRepo;
 
 @ExtendWith(MockitoExtension.class)
 class ProductServiceTest {
+
     Product p;
 
     @BeforeEach
@@ -289,4 +290,36 @@ class ProductServiceTest {
 
         assertEquals("Threshold reach", ex.getMessage());
     }
+    @Test
+    public void shouldAddProductWhenExisting() {
+        p.setId(1);
+        when(categoryService.addCategory("Fruit")).thenReturn(true);
+        when(repo.findByName("tomate")).thenReturn(Optional.of(p));
+
+        boolean result = service.addProduct("tomate", 5, "Fruit");
+
+        assertFalse(result);
+        assertEquals(25, p.getQuantity());
+        verify(repo).save(p);
+    }
+    @Test
+    public void shouldAddNewProduct() {
+        when(categoryService.addCategory("Fruit")).thenReturn(true);
+        when(repo.findByName("tomate")).thenReturn(Optional.empty());
+
+        boolean result = service.addProduct("tomate", 10, "Fruit");
+
+        assertTrue(result);
+        verify(repo).save(any(Product.class));
+    }
+    @Test
+    public void shouldThrowUnsupportedOperationForListProductByCategory() {
+        UnsupportedOperationException ex = assertThrows(
+            UnsupportedOperationException.class,
+            () -> service.listProductByCategory()
+        );
+
+        assertEquals("Not implemented yet", ex.getMessage());
+    }
+
 }

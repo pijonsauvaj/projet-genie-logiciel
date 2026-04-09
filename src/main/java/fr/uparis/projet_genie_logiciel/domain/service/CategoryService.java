@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import fr.uparis.projet_genie_logiciel.domain.model.Category;
 import fr.uparis.projet_genie_logiciel.persistance.CategoryRepo;
+import static fr.uparis.projet_genie_logiciel.util.StringUtils.lowerCase;
 
 public class CategoryService {
 	private final CategoryRepo repo;
@@ -41,7 +42,4 @@ public class CategoryService {
 		return repo.findAll();
 	}
 
-	private String lowerCase(String name) {
-		return name.toLowerCase().trim();
-	}
 }

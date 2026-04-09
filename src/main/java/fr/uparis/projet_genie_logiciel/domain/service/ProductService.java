@@ -6,6 +6,7 @@ import java.util.Optional;
 import fr.uparis.projet_genie_logiciel.domain.model.Category;
 import fr.uparis.projet_genie_logiciel.domain.model.Product;
 import fr.uparis.projet_genie_logiciel.persistance.ProductRepo;
+import static fr.uparis.projet_genie_logiciel.util.StringUtils.lowerCase;
 
 public class ProductService {
 
@@ -27,7 +28,7 @@ public class ProductService {
 	public void delProduct(String name) {
 		Optional<Product> opt = repo.findByName(lowerCase(name));
 		if (opt.isEmpty()) {
-			throw new IllegalArgumentException("Product not found: " + name);
+			throw new IllegalArgumentException("Product not found");
 		}
 		Product p = opt.get();
 		repo.delete(p.getId());
@@ -80,6 +81,9 @@ public class ProductService {
 
 	// réfléchir la logique
 	public void listProductByCategory() {
+	    // Méthode volontairement laissée vide pour le moment.
+	    // Elle sera implémentée lorsque la logique de regroupement par catégorie sera définie.
+	    throw new UnsupportedOperationException("Not implemented yet");
 	}
 
 	public boolean verifyThreshold(int id) {
@@ -123,10 +127,6 @@ public class ProductService {
 		if (verifyThreshold(product.getId())) {
 			throw new IllegalArgumentException("Threshold reach");
 		}
-	}
-
-	private String lowerCase(String name) {
-		return name.toLowerCase().trim();
 	}
 
 }

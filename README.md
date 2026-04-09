@@ -10,6 +10,7 @@
 - Dion REXHEPI
 - Morgan MINKO
 
+
 ## OverView
 This project is a Java application built using a clean layered architecture (Domain/Persistence/Presentation).
 It provides a command‑line interface (CLI) to manage: Products, Categories, Quantities, Inventory operations...
@@ -18,7 +19,11 @@ The goal is to demonstrate good software engineering practices, separation of co
 ## Installation
 git clone https://github.com/pijonsauvaj/projet-genie-logiciel.git    
 cd projet-genie-logiciel   
+<<<<<<< test
+mvn clean install   
+=======
 mvn clean install  
+>>>>>>> main
 
 
 
