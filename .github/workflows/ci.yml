@@ -16,6 +16,11 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: '17'
+      - name: SonarQube Cloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           distribution: 'temurin'
           cache: maven
       - name: Build
