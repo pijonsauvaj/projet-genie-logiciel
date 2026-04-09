@@ -18,17 +18,16 @@ public class CategoryService {
 		repo.delete(id);
 	}
 
-	public Category addCategory(String name) {
+	public boolean addCategory(String name) {
 		Optional<Category> existing = repo.findByName(lowerCase(name));
 		if (existing.isPresent()) {
 			Category cat = existing.get();
 			repo.save(cat);
-			System.out.println("Existing category: " + name + ". ");
-			return cat;
+			return false;
 		}
 		Category cat = new Category(lowerCase(name));
 		repo.save(cat);
-		return cat;
+		return true;
 	}
 
 	public void modifyNameCategory(int id, String name) {

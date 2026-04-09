@@ -1,14 +1,11 @@
 package fr.uparis.projet_genie_logiciel.domain.model;
 
-import fr.uparis.projet_genie_logiciel.domain.service.CategoryService;
-
 public class Product {
 	private int id;
 	private String name;
 	private int quantity;
 	private Category category;
 	private static int counter = 1;
-	private CategoryService cat;
 
 	public Product(String name, int quantity, Category c) {
 		this.id = counter++;
@@ -22,12 +19,6 @@ public class Product {
 		return "Product{" + "id=" + id + ", name=" + name + ", quantity=" + quantity + ", category="
 				+ category.getName() + "}";
 	}
-
-	/*
-	 * Je ne sais pas si increase et derease sont des méthodes métier ou service
-	 * public void IncreaseQuantity(int q) { quantity+=q; } public void
-	 * DecreaseQuantity(int q) { quantity-=q; }
-	 */
 
 	public int getId() {
 		return id;

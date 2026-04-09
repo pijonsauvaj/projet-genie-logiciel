@@ -12,6 +12,7 @@ public class ProductService {
 
 	private final ProductRepo repo;
 	private final CategoryService categoryService;
+	final static int THRESHOLD = 10;
 
 	public ProductService(ProductRepo repo, CategoryService categoryService) {
 		this.repo = repo;
@@ -33,18 +34,19 @@ public class ProductService {
 		repo.delete(p.getId());
 	}
 
-	public void addProduct(String name, int quantity, String categoryName) {
-		Category cat = categoryService.addCategory(categoryName);
+	public boolean addProduct(String name, int quantity, String categoryName) {
+		categoryService.addCategory(categoryName);
 		Optional<Product> existing = repo.findByName(lowerCase(name));
 		if (existing.isPresent()) {
 			Product p = existing.get();
 			p.addQuantity(quantity);
 			repo.save(p);
-			System.out.println("Existing product: " + name + ". Increased quantity of this product.");
-			return;
+			return false;
 		}
+		Category cat = new Category(lowerCase(categoryName));
 		Product p = new Product(lowerCase(name), quantity, cat);
 		repo.save(p);
+		return true;
 	}
 
 	public void modifyNameProduct(int id, String name) {
@@ -54,7 +56,7 @@ public class ProductService {
 			product.setName(lowerCase(name));
 			repo.save(product);
 		} else {
-			throw new IllegalArgumentException("Le nom ne peut pas être vide.");
+			throw new IllegalArgumentException("name can't be empty.");
 		}
 	}
 
@@ -65,7 +67,7 @@ public class ProductService {
 			product.setQuantity(quantity);
 			repo.save(product);
 		} else {
-			throw new IllegalArgumentException("La quantité doit être positif.");
+			throw new IllegalArgumentException("quantity must be positif.");
 		}
 	}
 
@@ -87,8 +89,7 @@ public class ProductService {
 	public boolean verifyThreshold(int id) {
 		Product p = repo.findById(id);
 		verifyNotNull(p);
-		int threshold = 10;
-		if (p.getQuantity() <= threshold) {
+		if (p.getQuantity() <= THRESHOLD) {
 			return true;
 		}
 		return false;
@@ -101,13 +102,13 @@ public class ProductService {
 		}
 		Product product = opt.get();
 		if (q <= 0) {
-			throw new IllegalArgumentException("Quantité pas assez grande");
+			throw new IllegalArgumentException("Quantity must be superior");
 		} else {
 			product.addQuantity(q);
 			repo.save(product);
 		}
-		if (verifyThreshold(product.getId()) == true) {
-			throw new IllegalArgumentException("Seuil de quantité atteint");
+		if (verifyThreshold(product.getId())) {
+			throw new IllegalArgumentException("threshold reach");
 		}
 	}
 
@@ -118,13 +119,13 @@ public class ProductService {
 		}
 		Product product = opt.get();
 		if (q <= 0) {
-			throw new IllegalArgumentException("Quantité pas assez grande");
+			throw new IllegalArgumentException("Quantity must be superior");
 		} else {
 			product.addQuantity(-q);
 			repo.save(product);
 		}
-		if (verifyThreshold(product.getId()) == true) {
-			throw new IllegalArgumentException("Seuil de quantité atteint");
+		if (verifyThreshold(product.getId())) {
+			throw new IllegalArgumentException("Threshold reach");
 		}
 	}
 

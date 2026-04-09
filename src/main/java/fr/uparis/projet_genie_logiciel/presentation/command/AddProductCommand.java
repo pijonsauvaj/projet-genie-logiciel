@@ -24,8 +24,19 @@ public class AddProductCommand implements Command {
 		int quantity = Integer.parseInt(scanner.nextLine());
 		System.out.print("Category: ");
 		String nameCategory = scanner.nextLine();
-		service.addProduct(name, quantity, nameCategory);
-		System.out.println("Entrée enregistrée.");
+
+		boolean newCategory = categoryService.addCategory(nameCategory);
+		boolean newProduct = service.addProduct(name, quantity, nameCategory);
+		if (newCategory) {
+			System.out.println("Category created.");
+		} else {
+			System.out.println("Existing category.");
+		}
+		if (newProduct) {
+			System.out.println("Product added.");
+		} else {
+			System.out.println("Existing product: quantity increased.");
+		}
 	}
 
 	@Override
