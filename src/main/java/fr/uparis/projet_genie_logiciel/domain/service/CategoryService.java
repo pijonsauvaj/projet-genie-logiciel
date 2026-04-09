@@ -17,17 +17,17 @@ public class CategoryService {
 		repo.delete(id);
 	}
 
-    public boolean addCategory(String name) {
-        Optional<Category> existing = repo.findByName(lowerCase(name));
-        if (existing.isPresent()) {
-            Category cat = existing.get();
-            repo.save(cat);
-            return false; 
-        }
-        Category cat = new Category(lowerCase(name));
-        repo.save(cat);
-        return true;
-    }
+	public boolean addCategory(String name) {
+		Optional<Category> existing = repo.findByName(lowerCase(name));
+		if (existing.isPresent()) {
+			Category cat = existing.get();
+			repo.save(cat);
+			return false;
+		}
+		Category cat = new Category(lowerCase(name));
+		repo.save(cat);
+		return true;
+	}
 
 	public void modifyNameCategory(int id, String name) {
 		Category cat = repo.findById(id);
