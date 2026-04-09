@@ -16,9 +16,9 @@ It provides a command‑line interface (CLI) to manage: Products, Categories, Qu
 The goal is to demonstrate good software engineering practices, separation of concerns, and testability.
 
 ## Installation
-git clone https://github.com/pijonsauvaj/projet-genie-logiciel.git
-cd projet-genie-logiciel
-mvn clean install
+git clone https://github.com/pijonsauvaj/projet-genie-logiciel.git 
+cd projet-genie-logiciel  
+mvn clean install  
 
 
 
