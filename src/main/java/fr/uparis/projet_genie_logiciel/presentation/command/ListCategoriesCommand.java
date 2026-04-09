@@ -17,6 +17,10 @@ public class ListCategoriesCommand implements Command {
 	public void execute() {
 		System.out.println("\n=== Categories List ===");
 		categoryService.listAllCategory().forEach(System.out::println);
+		
+		if(categoryService.listAllCategory().isEmpty()) {
+			System.out.println(" No category existing yet.");
+		}
 	}
 
 	@Override

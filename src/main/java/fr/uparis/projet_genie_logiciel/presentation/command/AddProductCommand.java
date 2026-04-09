@@ -24,6 +24,7 @@ public class AddProductCommand implements Command {
 		int quantity = Integer.parseInt(scanner.nextLine());
 		System.out.print("Category: ");
 		String nameCategory = scanner.nextLine();
+
 		boolean newCategory = categoryService.addCategory(nameCategory);
 		boolean newProduct = service.addProduct(name, quantity, nameCategory);
 		if (newCategory) {
