@@ -15,6 +15,7 @@ import java.util.Scanner;
 
 import fr.uparis.projet_genie_logiciel.domain.service.CategoryService;
 import fr.uparis.projet_genie_logiciel.domain.service.ProductService;
+import fr.uparis.projet_genie_logiciel.factory.CommandFactory;
 
 public class App {
 
@@ -26,15 +27,16 @@ public class App {
 
         ProductRepo repo = new ProductRepo();
         ProductService service = new ProductService(repo, categoryService);
-
+        CommandFactory factory = new CommandFactory(categoryService, service, scanner);
+        
         CLI cli = new CLI();
-        cli.register(new AddProductCommand(categoryService, service, scanner));
-        cli.register(new ListProductsCommand(categoryService, service, scanner));
-        cli.register(new DeleteProductCommand(categoryService, service, scanner));
-        cli.register(new IncreaseProductCommand(service, scanner));
-        cli.register(new DecreaseProductCommand(service, scanner));
-        cli.register(new ListCategoriesCommand(categoryService, scanner));
-        cli.register(new ExitCommand());
+        cli.register(factory.add());
+        cli.register(factory.listProducts());
+        cli.register(factory.delete());
+        cli.register(factory.increase());
+        cli.register(factory.decrease());
+        cli.register(factory.listCategories());
+        cli.register(factory.exit());
 
         cli.run();
     }
