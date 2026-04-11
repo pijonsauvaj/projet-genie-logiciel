@@ -20,7 +20,9 @@ public class ProductRepo {
 	}
 
 	public Optional<Product> findByName(String name) {
-		return products.values().stream().filter(product -> product.getName().equalsIgnoreCase(name)).findFirst();
+		return products.values()
+				.stream().filter(product -> product.getName()
+						.equalsIgnoreCase(name)).findFirst();
 	}
 
 	public List<Product> findAll() {

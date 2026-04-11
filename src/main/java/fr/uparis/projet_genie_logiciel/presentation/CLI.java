@@ -18,7 +18,8 @@ public class CLI {
 		Scanner scanner = new Scanner(System.in);
 		while (running) {
 			System.out.println("\n=== Product Manager ===");
-			commands.values().forEach(c -> System.out.println("  " + c.getName() + " - " + c.getDescription()));
+			commands.values()
+				.forEach(c -> System.out.println("  " + c.getName() + " - " + c.getDescription()));
 			System.out.print("> ");
 			String input = scanner.nextLine().trim();
 			Command cmd = commands.get(input);

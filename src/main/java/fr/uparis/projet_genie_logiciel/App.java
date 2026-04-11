@@ -3,13 +3,6 @@ package fr.uparis.projet_genie_logiciel;
 import fr.uparis.projet_genie_logiciel.persistance.CategoryRepo;
 import fr.uparis.projet_genie_logiciel.persistance.ProductRepo;
 import fr.uparis.projet_genie_logiciel.presentation.CLI;
-import fr.uparis.projet_genie_logiciel.presentation.command.AddProductCommand;
-import fr.uparis.projet_genie_logiciel.presentation.command.DecreaseProductCommand;
-import fr.uparis.projet_genie_logiciel.presentation.command.DeleteProductCommand;
-import fr.uparis.projet_genie_logiciel.presentation.command.ExitCommand;
-import fr.uparis.projet_genie_logiciel.presentation.command.IncreaseProductCommand;
-import fr.uparis.projet_genie_logiciel.presentation.command.ListCategoriesCommand;
-import fr.uparis.projet_genie_logiciel.presentation.command.ListProductsCommand;
 
 import java.util.Scanner;
 
