@@ -16,3 +16,8 @@ Thumbs.db
 *.jar
 *.war
 *.ear
+# Secrets
+.env
+*.pem
+*.key
+secrets.properties

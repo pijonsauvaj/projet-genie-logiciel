@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import fr.uparis.projet_genie_logiciel.domain.model.Category;
 import fr.uparis.projet_genie_logiciel.persistance.CategoryRepo;
+import static fr.uparis.projet_genie_logiciel.util.StringUtils.lowerCase;
 
 public class CategoryService {
 	private final CategoryRepo repo;
@@ -17,17 +18,16 @@ public class CategoryService {
 		repo.delete(id);
 	}
 
-	public Category addCategory(String name) {
+	public boolean addCategory(String name) {
 		Optional<Category> existing = repo.findByName(lowerCase(name));
 		if (existing.isPresent()) {
 			Category cat = existing.get();
 			repo.save(cat);
-			System.out.println("Existing category: " + name + ". ");
-			return cat;
+			return false;
 		}
 		Category cat = new Category(lowerCase(name));
 		repo.save(cat);
-		return cat;
+		return true;
 	}
 
 	public void modifyNameCategory(int id, String name) {
@@ -42,7 +42,4 @@ public class CategoryService {
 		return repo.findAll();
 	}
 
-	private String lowerCase(String name) {
-		return name.toLowerCase().trim();
-	}
 }

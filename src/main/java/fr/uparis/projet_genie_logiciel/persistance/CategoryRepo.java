@@ -20,7 +20,9 @@ public class CategoryRepo {
 	}
 
 	public Optional<Category> findByName(String name) {
-		return categories.values().stream().filter(product -> product.getName().equalsIgnoreCase(name)).findFirst();
+		return categories.values().stream().filter(product -> product.getName().
+				equalsIgnoreCase(name))
+				.findFirst();
 	}
 
 	public List<Category> findAll() {
