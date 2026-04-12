@@ -19,12 +19,7 @@ The goal is to demonstrate good software engineering practices, separation of co
 ## Installation
 git clone https://github.com/pijonsauvaj/projet-genie-logiciel.git    
 cd projet-genie-logiciel   
-<<<<<<< test
 mvn clean install   
-=======
-mvn clean install  
->>>>>>> main
-
 
 
 ## Run 
