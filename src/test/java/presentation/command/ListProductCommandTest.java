@@ -19,7 +19,7 @@ class ListProductsCommandTest {
 
 	@Test
 	void shouldListAllProducts() {
-		// Arrange
+		
 		CategoryService categoryService = mock(CategoryService.class);
 		ProductService productService = mock(ProductService.class);
 		Scanner Scanner = new Scanner("");
